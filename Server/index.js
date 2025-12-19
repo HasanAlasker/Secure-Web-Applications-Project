@@ -3,6 +3,8 @@ import mongoose from "mongoose";
 import dotenv from "dotenv";
 import cors from "cors";
 
+import users from "./models/users.js";
+
 dotenv.config();
 
 const app = express();
@@ -16,10 +18,9 @@ mongoose
     console.error("Error connecting to mongoDB... ❌", err.message)
   );
 
-app.use(express.json())
+app.use(express.json());
+app.use("/api/users", users);
 
 app.listen(port, () => {
   console.log(`Server running on port ${port} 🌍`);
-  console.log(`Accessible at http://YOUR_IP:${port} 🖥️`);
-  
 });
