@@ -1,0 +1,125 @@
+# 🔐 Secure Web Applications Project
+
+![Security](https://img.shields.io/badge/Security-Focused-success)
+![License](https://img.shields.io/badge/License-Academic-blue)
+![Frontend](https://img.shields.io/badge/Frontend-React-blue)
+![Backend](https://img.shields.io/badge/Backend-Express.js-lightgrey)
+![Database](https://img.shields.io/badge/Database-MongoDB-green)
+![Auth](https://img.shields.io/badge/Auth-JWT%20%2B%20bcrypt-orange)
+
+---
+
+## 📌 Description
+
+**Secure Web Applications Project** is a secure full-stack web application developed as part of the  
+**Application Security & Secure Coding** course.
+
+The project demonstrates **secure-by-design development practices**, including:
+- Strong authentication and authorization
+- Input validation and sanitization
+- Encryption of sensitive data
+- Role-based access control (RBAC)
+- Threat modeling using **STRIDE**
+- Risk analysis using **DREAD**
+- Static code analysis using security scanning tools
+
+---
+
+## 🛠 Tech Stack
+
+### Frontend
+- React
+- Formik (form state management)
+- Yup (client-side validation)
+
+### Backend
+- Node.js
+- Express.js
+- Joi (server-side validation)
+
+### Database
+- MongoDB
+
+### Authentication & Security
+- JWT (JSON Web Tokens)
+- bcrypt (password hashing)
+- Helmet (security headers)
+- Rate limiting
+- CORS configuration
+
+---
+
+## ✨ Features
+
+- User Registration & Login
+- Secure password hashing using bcrypt
+- JWT-based authentication with expiration
+- Role-based access control (Admin / User)
+- Input validation (client & server side)
+- Secure session handling
+- Encryption of sensitive fields
+- Centralized error handling
+- Protection against common web vulnerabilities
+
+---
+
+## 🔒 Security Implementations
+
+| Area | Implementation |
+|-----|---------------|
+| Input Validation | Joi (backend), Yup (frontend) |
+| Password Storage | bcrypt hashing |
+| Authentication | JWT with signature & expiration |
+| Authorization | Role-based access control |
+| Session Security | Token expiration & renewal |
+| Headers | Helmet (CSP, XSS protection, etc.) |
+| Rate Limiting | Prevent brute-force attacks |
+| CORS | Restricted origins |
+| Error Handling | Generic error messages (no sensitive data leakage) |
+
+---
+
+## 🧠 Threat Modeling
+
+This project includes formal threat modeling and risk analysis:
+
+- **STRIDE Threat Model**  
+  📄 `docs/STRIDE_Threat_Model.md`
+
+- **DREAD Risk Assessment**  
+  📄 `docs/DREAD_Risk_Assessment.md`
+
+Each identified threat is mapped to real mitigation techniques implemented in the application.
+
+---
+
+## 🧪 Security Scanning & Code Analysis
+
+The following tools were used to analyze the codebase:
+
+- [x] GitHub CodeQL
+- [x] SonarQube
+- [ ] Snyk
+- [ ] Checkmarx
+
+📂 Reports and screenshots are available in the `scans/` directory.
+
+---
+
+## 🚀 Deployment
+
+**Live Application:**  
+🔗 *[Add deployment URL here]*
+
+### Local Setup
+
+```bash
+# Clone repository
+git clone https://github.com/your-username/secure-web-applications-project.git
+cd secure-web-applications-project
+
+# Install backend dependencies
+npm install
+
+# Run application
+npm start
