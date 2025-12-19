@@ -23,6 +23,8 @@ The project demonstrates **secure-by-design development practices**, including:
 - Risk analysis using **DREAD**
 - Static code analysis using security scanning tools
 
+⚠️**This repository is intended for educational and demonstration purposes only and is not a production system.**
+
 ---
 
 ## 🛠 Tech Stack
