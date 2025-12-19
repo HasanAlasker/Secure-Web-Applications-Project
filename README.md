@@ -117,7 +117,7 @@ The following tools were used to analyze the codebase:
 
 ```bash
 # Clone repository
-git clone https://github.com/your-username/secure-web-applications-project.git
+git clone https://github.com/HasanAlasker/Secure-Web-Applications-Project.git
 cd secure-web-applications-project
 
 # Install backend dependencies
