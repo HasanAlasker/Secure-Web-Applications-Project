@@ -58,7 +58,7 @@ userSchema.method.generateAuthToken = function () {
       isVerified: this.isVerified,
     },
     process.env.JWT_SECRET,
-    { expiresIn: "3d" }
+    { expiresIn: "3d" } // i might do token regeneration, but i will need an access token
   );
 
   return token;
