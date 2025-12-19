@@ -8,6 +8,7 @@ const router = express.Router();
 // user login
 
 // get all users (admin)
+router.get('/')
 
 // get me (auth users)
 
