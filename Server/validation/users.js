@@ -1,6 +1,6 @@
 import Joi from "joi";
 
-export default userRegistrationSchema = Joi.object({
+export const userRegistrationSchema = Joi.object({
   name: Joi.string()
     .min(2)
     .max(25)
@@ -14,8 +14,9 @@ export default userRegistrationSchema = Joi.object({
       "any.required": "Name is required",
     }),
 
-  email: Joi.string().email().lowercase().trim().messages({
+  email: Joi.string().email().lowercase().trim().required().messages({
     "string.email": "Please enter a valid email address",
+    "any.required": "Email is required",
   }),
 
   password: Joi.string()
@@ -36,8 +37,9 @@ export default userRegistrationSchema = Joi.object({
 });
 
 export const userLoginSchema = Joi.object({
-  email: Joi.string().email().lowercase().trim().messages({
+  email: Joi.string().email().lowercase().trim().required().messages({
     "string.email": "Please enter a valid email address",
+    "any.required": "Email is required",
   }),
 
   password: Joi.string()

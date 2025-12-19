@@ -64,7 +64,7 @@ userSchema.method.generateAuthToken = function () {
   return token;
 };
 
-userSchema.method.hashPassword = async function (password) {
+userSchema.methods.hashPassword = async function (password) {
   const salt = await bcrypt.genSalt(10);
   return await bcrypt.hash(password, salt);
 };

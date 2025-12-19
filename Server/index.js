@@ -3,7 +3,7 @@ import mongoose from "mongoose";
 import dotenv from "dotenv";
 import cors from "cors";
 
-import users from "./models/users.js";
+import users from "./routers/users.js";
 
 dotenv.config();
 
