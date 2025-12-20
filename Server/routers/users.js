@@ -55,6 +55,8 @@ router.post("/register", validate(userRegistrationSchema), async (req, res) => {
 
     await newUser.save();
 
+    const token = newUser.generateAuthToken();
+
     const response = _.pick(newUser, [
       "_id",
       "name",
@@ -65,7 +67,7 @@ router.post("/register", validate(userRegistrationSchema), async (req, res) => {
       "updatedAt",
     ]);
 
-    return res.status(201).send(response);
+    return res.status(201).cookie("token", token).send(response);
   } catch (err) {
     console.log(err);
     return res.status(500).send(err);
@@ -95,8 +97,20 @@ router.post("/login", validate(userLoginSchema), async (req, res) => {
       "updatedAt",
     ]);
 
-    return res.status(200).header("x-auth-token", token).send(response);
+    return res.status(200).cookie("token", token).send(response);
   } catch (err) {
+    console.log(err);
+    return res.status(500).send(err);
+  }
+});
+
+router.post("/logout", async (req, res) => {
+  try {
+    res
+      .clearCookie("token")
+      .status(200)
+      .send({ message: "Logged out successfully" });
+  } catch (error) {
     console.log(err);
     return res.status(500).send(err);
   }

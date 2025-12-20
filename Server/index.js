@@ -8,8 +8,14 @@ import users from "./routers/users.js";
 dotenv.config();
 
 const app = express();
-app.use(cors()); // make this secure later
 const port = process.env.PORT || 3000;
+
+app.use(
+  cors({
+    origin: "http://localhost:3000", //i should set this to env
+    credentials: true,
+  })
+);
 
 mongoose
   .connect(process.env.DATABASE_URL)
