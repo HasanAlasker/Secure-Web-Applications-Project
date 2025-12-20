@@ -94,6 +94,20 @@ This project includes formal threat modeling and risk analysis:
 Each identified threat is mapped to real mitigation techniques implemented in the application.
 
 ---
+## 👥 Team Contributions
+| Assessment Criterion                                 | Contribution |
+| ---------------------------------------------------- | ------------ |
+| Application Functionality (Admin/User roles, routes) | **Hasan**    |
+| Authentication, Authorization & Session Management   | **Hasan**    |
+| Input Validation & Output Sanitization               | **Hasan**    |
+| Password Hashing & Encryption                        | **Hasan**    |
+| STRIDE Threat Modeling Document                      | **Zaid**     |
+| DREAD Risk Assessment Document                       | **Zaid** |
+| Secure Deployment on GitHub & README                 | **Hasan**    |
+| Code Scanning & Remediation (CodeQL / SonarQube)     | **Zaid** |
+| Discussion & Presentation                            | **Both**     |
+
+---
 
 ## 🧪 Security Scanning & Code Analysis
 
