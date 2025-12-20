@@ -3,6 +3,6 @@ import './App.css'
 
 export default function App() {
   return (
-    <h1>Secure App Project</h1>
+    <h1>I love react</h1>
   )
 }

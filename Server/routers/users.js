@@ -16,11 +16,28 @@ const router = express.Router();
 // get all users (admin)
 router.get("/", [auth, admin], async (req, res) => {
   try {
-    const users = await UserModel.find();
+    const users = await UserModel.find()
+      .select("-password -__v")
+      .sort("-createdAt");
     if (users.length === 0) return res.status(404).send("No users found");
 
     return res.status(200).send(users);
   } catch (err) {
+    return res.status(500).send(err);
+  }
+});
+
+// get me (auth users)
+router.get("/me", auth, async (req, res) => {
+  try {
+    const id = req.user._id;
+
+    const user = await UserModel.findById(id).select("-password -__v");
+    if (!user) res.status(404).send("User not found");
+
+    return res.status(201).send(user);
+  } catch (err) {
+    console.log(err);
     return res.status(500).send(err);
   }
 });
@@ -84,7 +101,5 @@ router.post("/login", validate(userLoginSchema), async (req, res) => {
     return res.status(500).send(err);
   }
 });
-
-// get me (auth users)
 
 export default router;
