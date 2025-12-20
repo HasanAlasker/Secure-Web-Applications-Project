@@ -25,14 +25,12 @@ export default function Login() {
   const handleSubmit = () => {};
 
   return (
-    <h1>Form</h1>
-
-    // <Formik
-    //   initialValues={initialValues}
-    //   validationSchema={validitionSchema}
-    //   onSubmit={handleSubmit}
-    // >
-    //   {() => <Form></Form>}
-    // </Formik>
+    <Formik
+      initialValues={initialValues}
+      validationSchema={validitionSchema}
+      onSubmit={handleSubmit}
+    >
+      {() => <Form></Form>}
+    </Formik>
   );
 }

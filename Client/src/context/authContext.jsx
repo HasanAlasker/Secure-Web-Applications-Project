@@ -8,6 +8,7 @@ export function useAuth() {
   if (!context) {
     throw new Error("useAuth must be used in a provider");
   }
+  return context
 }
 
 export function AuthProvider({ children }) {
