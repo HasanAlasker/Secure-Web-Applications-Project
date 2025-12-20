@@ -14,6 +14,7 @@ export function useAuth() {
 
 export function AuthProvider({ children }) {
   const [user, setUser] = useState(null);
+  const [error, setError] = useState(false);
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
@@ -24,6 +25,9 @@ export function AuthProvider({ children }) {
       if (res.ok) {
         setUser(res.data);
         navigate("/");
+      }
+      else{
+        setError(true)
       }
       setLoading(false);
     } catch (error) {
@@ -65,6 +69,7 @@ export function AuthProvider({ children }) {
     register,
     logout,
     loading,
+    error
   };
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
