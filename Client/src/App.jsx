@@ -9,22 +9,22 @@ export default function App() {
   useEffect(() => {
     fetchUsers();
   }, []);
-  
+
   if (loading) console.log("fetching users...");
 
   const admins = users.filter((user) => user.role === "admin");
   const normalUsers = users.filter((user) => user.role === "user");
 
-  const adminList = admins.map((user) => <h1>{user.name}</h1>);
-  const userList = normalUsers.map((user) => <h1>{user.name}</h1>);
+  const adminList = admins.map((user) => user.name);
+  const userList = normalUsers.map((user) => user.name);
 
   return (
     <>
       <h1>Admins: </h1>
-      {adminList.length > 0 ? <div>{adminList}</div> : "There are no admins"}
+      <h2>{adminList.length > 0 ? adminList : "There are no admins"}</h2>
       <br />
       <h1>Users: </h1>
-      {userList.length > 0 ? <div>{userList}</div> : "There are no users"}
+      <h2>{userList.length > 0 ? userList : "There are no users"}</h2>
     </>
   );
 }

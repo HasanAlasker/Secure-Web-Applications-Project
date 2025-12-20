@@ -1,5 +1,4 @@
 import express from "express";
-import mongoose from "mongoose";
 import _ from "lodash";
 import bcrypt from "bcrypt";
 import admin from "../middleware/admin.js";
@@ -14,7 +13,7 @@ import {
 const router = express.Router();
 
 // get all users (admin)
-router.get("/", async (req, res) => {
+router.get("/", [auth, admin], async (req, res) => {
   try {
     const users = await UserModel.find()
       .select("-password -__v")
