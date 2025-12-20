@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
-import "./App.css";
-import { getAllUsers } from "./api/user";
-import useApi from "./hooks/useApi";
+import "../App.css";
+import { getAllUsers } from "../api/user";
+import useApi from "../hooks/useApi";
 
 export default function Admin() {
   const { data: users, request: fetchUsers, loading } = useApi(getAllUsers);
