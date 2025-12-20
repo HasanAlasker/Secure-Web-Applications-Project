@@ -2,6 +2,7 @@ import React from "react";
 import { useAuth } from "../context/authContext";
 import { ErrorMessage, Field, Form, Formik } from "formik";
 import * as Yup from "yup";
+import { useNavigate } from "react-router-dom";
 
 const validitionSchema = Yup.object({
   email: Yup.string()
@@ -21,6 +22,7 @@ const initialValues = {
 
 export default function Login() {
   const { user, loading, login } = useAuth();
+  const navigate = useNavigate()
 
   const handleSubmit = async (values, { setSubmitting, setStatus }) => {
     const loginData = {
@@ -28,7 +30,6 @@ export default function Login() {
       password: values.password,
     };
     login(loginData);
-    console.log("form: ", loginData)
   };
 
   return (

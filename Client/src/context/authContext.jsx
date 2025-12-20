@@ -1,5 +1,6 @@
 import { createContext, useContext, useState } from "react";
 import { loginUser, logoutUser, registerUser } from "../api/user";
+import { useNavigate } from "react-router-dom";
 
 export const AuthContext = createContext();
 
@@ -8,18 +9,22 @@ export function useAuth() {
   if (!context) {
     throw new Error("useAuth must be used in a provider");
   }
-  return context
+  return context;
 }
 
 export function AuthProvider({ children }) {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(false);
+  const navigate = useNavigate();
 
   const login = async (data) => {
     try {
       setLoading(true);
       const res = await loginUser(data);
-      if (res.ok) setUser(res.data);
+      if (res.ok) {
+        setUser(res.data);
+        navigate("/");
+      }
       setLoading(false);
     } catch (error) {
       console.log(error);
@@ -30,7 +35,10 @@ export function AuthProvider({ children }) {
     try {
       setLoading(true);
       const res = await registerUser(data);
-      if (res.ok) setUser(res.data);
+      if (res.ok) {
+        setUser(res.data);
+        navigate("/");
+      }
       setLoading(false);
     } catch (error) {
       console.log(error);
@@ -41,7 +49,10 @@ export function AuthProvider({ children }) {
     try {
       setLoading(true);
       const res = await logoutUser();
-      if (res.ok) setUser(null);
+      if (res.ok) {
+        setUser(null);
+        navigate("/");
+      }
       setLoading(false);
     } catch (error) {
       console.log(error);
