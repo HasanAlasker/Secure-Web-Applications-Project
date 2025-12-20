@@ -14,7 +14,7 @@ import {
 const router = express.Router();
 
 // get all users (admin)
-router.get("/", [auth, admin], async (req, res) => {
+router.get("/", async (req, res) => {
   try {
     const users = await UserModel.find()
       .select("-password -__v")

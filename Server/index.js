@@ -12,7 +12,7 @@ const port = process.env.PORT || 3000;
 
 app.use(
   cors({
-    origin: "http://localhost:3000", //i should set this to env
+    origin: "http://localhost:5173", //change this when deployed ot netlify
     credentials: true,
   })
 );
