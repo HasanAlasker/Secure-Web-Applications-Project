@@ -1,6 +1,6 @@
 import React from "react";
 import { useAuth } from "../context/authContext";
-import { Form, Formik } from "formik";
+import { ErrorMessage, Field, Form, Formik } from "formik";
 import * as Yup from "yup";
 
 const validitionSchema = Yup.object({
@@ -22,7 +22,14 @@ const initialValues = {
 export default function Login() {
   const { user, loading, login } = useAuth();
 
-  const handleSubmit = () => {};
+  const handleSubmit = async (values, { setSubmitting, setStatus }) => {
+    const loginData = {
+      email: values.email,
+      password: values.password,
+    };
+    login(loginData);
+    console.log("form: ", loginData)
+  };
 
   return (
     <Formik
@@ -30,7 +37,36 @@ export default function Login() {
       validationSchema={validitionSchema}
       onSubmit={handleSubmit}
     >
-      {() => <Form></Form>}
+      {({ isSubmitting, touched, errors, status }) => (
+        <Form>
+          <Field
+            type="email"
+            id="email"
+            name="email"
+            placeholder="Enter Your Email"
+          />
+          <ErrorMessage
+            name="email"
+            component="div"
+            className="error-message"
+          />
+          <Field
+            type="password"
+            id="password"
+            name="password"
+            placeholder="Enter Your Password"
+          />
+          <ErrorMessage
+            name="password"
+            component="div"
+            className="error-message"
+          />
+
+          <button disabled={isSubmitting || loading} type="submit">
+            {isSubmitting ? "Logging in..." : "Login"}
+          </button>
+        </Form>
+      )}
     </Formik>
   );
 }
