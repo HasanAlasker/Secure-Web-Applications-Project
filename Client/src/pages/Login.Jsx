@@ -10,9 +10,7 @@ const validitionSchema = Yup.object({
     .email("Invalid email address")
     .required("Email is required")
     .trim(),
-  password: Yup.string()
-    .required("Password is required")
-    .trim(),
+  password: Yup.string().required("Password is required").trim(),
 });
 
 const initialValues = {
@@ -21,7 +19,7 @@ const initialValues = {
 };
 
 export default function Login() {
-  const { user, loading, login, error} = useAuth();
+  const { user, loading, login, error } = useAuth();
   const navigate = useNavigate();
 
   const handleSubmit = async (values, { setSubmitting, setStatus }) => {
@@ -31,6 +29,9 @@ export default function Login() {
     };
     const result = await login(loginData);
     setSubmitting(false);
+
+    console.log("loginData: ", loginData);
+    console.log("result: ", result);
   };
 
   return (
@@ -88,7 +89,11 @@ export default function Login() {
                 {isSubmitting || loading ? "Logging in..." : "Login"}
               </button>
 
-              {error && <div className="error-message large">Wrong email or password</div>}
+              {error && (
+                <div className="error-message large">
+                  Wrong email or password
+                </div>
+              )}
 
               <p className="signup-link">
                 Don't have an account?{" "}

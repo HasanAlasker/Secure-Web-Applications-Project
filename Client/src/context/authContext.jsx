@@ -1,5 +1,5 @@
-import { createContext, useContext, useState } from "react";
-import { loginUser, logoutUser, registerUser } from "../api/user";
+import { createContext, useContext, useState, useEffect } from "react";
+import { loginUser, logoutUser, registerUser, getMe } from "../api/user";
 import { useNavigate } from "react-router-dom";
 
 export const AuthContext = createContext();
@@ -15,12 +15,29 @@ export function useAuth() {
 export function AuthProvider({ children }) {
   const [user, setUser] = useState(null);
   const [error, setError] = useState(false);
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true); // ✅ Start as true
   const navigate = useNavigate();
+
+  useEffect(() => {
+    const checkAuth = async () => {
+      try {
+        const res = await getMe();
+        if (res.ok) {
+          setUser(res.data);
+        }
+      } catch (error) {
+        console.log("Not authenticated:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+    checkAuth();
+  }, []);
 
   const login = async (data) => {
     try {
       setLoading(true);
+      setError(false);
       const res = await loginUser(data);
       if (res.ok) {
         setUser(res.data);
@@ -31,6 +48,8 @@ export function AuthProvider({ children }) {
       setLoading(false);
     } catch (error) {
       console.log(error);
+      setError(true);
+      setLoading(false);
     }
   };
 
@@ -45,6 +64,7 @@ export function AuthProvider({ children }) {
       setLoading(false);
     } catch (error) {
       console.log(error);
+      setLoading(false);
     }
   };
 
@@ -59,18 +79,13 @@ export function AuthProvider({ children }) {
       setLoading(false);
     } catch (error) {
       console.log(error);
+      setLoading(false);
     }
   };
 
-  const isAdmin = () => {
-    if (user.role === "admin") return true;
-    else return false;
-  };
+  const isAdmin = user?.role === "admin";
 
-  const isUser = () => {
-    if (user.role === "user") return true;
-    else return false;
-  };
+  const isUser = user?.role === "user";
 
   const value = {
     user,

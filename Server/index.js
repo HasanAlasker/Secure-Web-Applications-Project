@@ -4,12 +4,15 @@ import dotenv from "dotenv";
 import cors from "cors";
 
 import users from "./routers/users.js";
+import cookieParser from "cookie-parser";
 
 dotenv.config();
 
 const app = express();
 const port = process.env.PORT || 3000;
 
+app.use(express.json());
+app.use(cookieParser());
 app.use(
   cors({
     origin: "http://localhost:5173", //change this when deployed ot netlify
@@ -24,7 +27,6 @@ mongoose
     console.error("Error connecting to mongoDB... ❌", err.message)
   );
 
-app.use(express.json());
 app.use("/api/users", users);
 
 app.listen(port, () => {
