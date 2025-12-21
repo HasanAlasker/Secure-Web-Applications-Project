@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import "../App.css";
 import { getAllUsers } from "../api/user";
 import useApi from "../hooks/useApi";
+import Nav from "../components/Nav";
 
 export default function Admin() {
   const { data: users, request: fetchUsers, loading } = useApi(getAllUsers);
@@ -19,12 +20,15 @@ export default function Admin() {
   const userList = normalUsers.map((user) => user.name);
 
   return (
-    <>
-      <h1>Admins: </h1>
-      <h2>{adminList.length > 0 ? adminList : "There are no admins"}</h2>
-      <br />
-      <h1>Users: </h1>
-      <h2>{userList.length > 0 ? userList : "There are no users"}</h2>
-    </>
+    <div>
+      <Nav />
+      <div className="screen">
+        <h1>Admins: </h1>
+        <h2>{adminList.length > 0 ? adminList : "There are no admins"}</h2>
+        <br />
+        <h1>Users: </h1>
+        <h2>{userList.length > 0 ? userList : "There are no users"}</h2>
+      </div>
+    </div>
   );
 }

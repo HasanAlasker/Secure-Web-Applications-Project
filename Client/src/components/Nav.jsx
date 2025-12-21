@@ -7,15 +7,16 @@ function Nav({ onMenuOpen }) {
   return (
     <>
       <nav>
-        <div>
+        <div className="big linksCont">
+          <a href="/">Home</a>
           {user && isUser && <a href="/me">My Info</a>}
           {user && isAdmin && <a href="/admin">Users Info</a>}
         </div>
         <div>
           {user ? (
-            <button onClick={logout}>Logout</button>
+            <button className="logout big" onClick={logout}>Logout</button>
           ) : (
-            <a href="/login">Login</a>
+            <a className="big" href="/login">Login</a>
           )}
         </div>
       </nav>
