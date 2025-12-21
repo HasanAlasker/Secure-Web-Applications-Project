@@ -12,6 +12,7 @@
   --gray: #a39e9e;
   --primary: linear-gradient(135deg, #5574ff 0%, #6b73e9 100%);
   --rgb: rgba(255, 56, 93, 1);
+  --primText: #5574ff;
   --hoverPri: rgb(220, 51, 82) 0%;
   --hoverSec: rgb(236, 236, 236);
 }
@@ -20,12 +21,58 @@
   padding: 0 5rem;
 }
 
+
+
 nav {
   display: flex;
+  position: sticky;
+  top: 0;
+  right: 0;
+  left: 0;
   justify-content: space-between;
-  background: var(--primary);
   padding: 1rem 5rem;
   margin-bottom: 4rem;
+  z-index: 1000;
+  background: rgba(255, 255, 255, 0.24);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.5),
+    inset 0 -1px 0 rgba(255, 255, 255, 0.1),
+    inset 0 0 6px 3px rgba(255, 255, 255, 0.3);
+  overflow: hidden;
+}
+
+nav::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.8),
+    transparent
+  );
+}
+
+nav::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 1px;
+  height: 100%;
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.8),
+    transparent,
+    rgba(255, 255, 255, 0.3)
+  );
 }
 
 .linksCont {
@@ -35,14 +82,19 @@ nav {
 
 a {
   text-decoration: none;
-  color: var(--white);
+  color: var(--primary);
   cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+a:hover {
+  color: var(--primText);
 }
 
 .logout {
   background: none;
   border: none;
-  color: var(--white);
+  color: var(--rgb);
   cursor: pointer;
 }
 
@@ -92,7 +144,7 @@ a {
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-.card{
+.card {
   margin-bottom: 3rem;
 }
 
@@ -111,7 +163,12 @@ a {
   margin-bottom: 0.5rem;
   font-size: 1.3rem;
 }
-
+h4 {
+  font-weight: bold;
+  font-size: 2rem;
+  color: #667eea;
+  margin-bottom: 2rem;
+}
 .feature-card p {
   color: #666;
   line-height: 1.6;
