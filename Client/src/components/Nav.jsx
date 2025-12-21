@@ -3,7 +3,7 @@ import { useAuth } from "../context/authContext";
 function Nav({ onMenuOpen }) {
   const { user, logout, isAdmin, isUser } = useAuth();
 
-  console.log(user)
+  console.log(user);
   return (
     <>
       <nav>
@@ -14,9 +14,18 @@ function Nav({ onMenuOpen }) {
         </div>
         <div>
           {user ? (
-            <button className="logout big" onClick={logout}>Logout</button>
+            <button className="logout big" onClick={logout}>
+              Logout
+            </button>
           ) : (
-            <a className="big" href="/login">Login</a>
+            <div className="linksCont">
+              <a className="big" href="/login">
+                Login
+              </a>
+              <a className="big" href="/register">
+                Register
+              </a>
+            </div>
           )}
         </div>
       </nav>
