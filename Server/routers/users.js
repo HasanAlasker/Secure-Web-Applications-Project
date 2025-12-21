@@ -54,7 +54,7 @@ router.post("/register", validate(userRegistrationSchema), async (req, res) => {
 
     await newUser.save();
 
-    const token = newUser.generateAuthToken();
+    const token = await newUser.generateAuthToken();
 
     const response = _.pick(newUser, [
       "_id",
