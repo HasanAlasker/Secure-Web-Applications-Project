@@ -3,6 +3,7 @@ import "../App.css";
 import { getAllUsers } from "../api/user";
 import useApi from "../hooks/useApi";
 import Nav from "../components/Nav";
+import Card from "../components/Card";
 
 export default function Admin() {
   const { data: users, request: fetchUsers, loading } = useApi(getAllUsers);
@@ -16,8 +17,25 @@ export default function Admin() {
   const admins = users.filter((user) => user.role === "admin");
   const normalUsers = users.filter((user) => user.role === "user");
 
-  const adminList = admins.map((user) => user.name);
-  const userList = normalUsers.map((user) => user.name);
+  const adminList = admins.map((user) => (
+    <Card
+      title={"Admin Info"}
+      name={user.name}
+      email={user.email}
+      role={user.role}
+      createdAt={user.createdAt}
+    />
+  ));
+  const userList = normalUsers.map((user) => (
+    <Card
+      title={"User Info"}
+      id={user._id}
+      name={user.name}
+      email={user.email}
+      role={user.role}
+      createdAt={user.createdAt}
+    />
+  ));
 
   return (
     <div>
