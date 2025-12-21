@@ -3,7 +3,6 @@ import { useAuth } from "../context/authContext";
 function Nav({ onMenuOpen }) {
   const { user, logout, isAdmin, isUser } = useAuth();
 
-  console.log(user);
   return (
     <>
       <nav>

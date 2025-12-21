@@ -37,11 +37,8 @@ export default function Register() {
       email: values.email,
       password: values.password,
     };
-    const result = await register(loginData);
+    await register(loginData);
     setSubmitting(false);
-
-    console.log("loginData: ", loginData);
-    console.log("result: ", result);
   };
 
   return (

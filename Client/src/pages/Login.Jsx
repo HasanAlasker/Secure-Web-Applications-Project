@@ -27,11 +27,8 @@ export default function Login() {
       email: values.email,
       password: values.password,
     };
-    const result = await login(loginData);
+    await login(loginData);
     setSubmitting(false);
-
-    console.log("loginData: ", loginData);
-    console.log("result: ", result);
   };
 
   return (
