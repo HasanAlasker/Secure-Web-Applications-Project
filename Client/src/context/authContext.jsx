@@ -25,9 +25,8 @@ export function AuthProvider({ children }) {
       if (res.ok) {
         setUser(res.data);
         navigate("/");
-      }
-      else{
-        setError(true)
+      } else {
+        setError(true);
       }
       setLoading(false);
     } catch (error) {
@@ -63,13 +62,25 @@ export function AuthProvider({ children }) {
     }
   };
 
+  const isAdmin = () => {
+    if (user.role === "admin") return true;
+    else return false;
+  };
+
+  const isUser = () => {
+    if (user.role === "user") return true;
+    else return false;
+  };
+
   const value = {
     user,
     login,
     register,
     logout,
     loading,
-    error
+    error,
+    isAdmin,
+    isUser,
   };
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
