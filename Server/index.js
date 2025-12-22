@@ -18,7 +18,7 @@ app.use(helmet());
 app.use(cookieParser());
 app.use(
   cors({
-    origin: "https://secure-project.netlify.app/", //change this when deployed ot netlify
+    origin: "https://secure-web-applications-project.onrender.com", //change this when deployed ot netlify
     credentials: true,
   })
 );
