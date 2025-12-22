@@ -1,1 +1,1 @@
-export const BASE_URL = "https://secure-project.netlify.app/"
+export const BASE_URL = "https://secure-web-applications-project.onrender.com"
