@@ -15,7 +15,7 @@ const validitionSchema = Yup.object({
   password: Yup.string()
     .min(8, "Password must be at least 8 characters")
     .matches(
-      /(?=.*[a-z])(?=.*[A-Z])(?=.*\d)/,
+      /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]+$/,
       "Password must contain uppercase, lowercase, and number"
     )
     .required("Password is required"),

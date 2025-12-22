@@ -60,6 +60,8 @@ export function AuthProvider({ children }) {
       if (res.ok) {
         setUser(res.data);
         navigate("/");
+      } else {
+        setError(true);
       }
       setLoading(false);
     } catch (error) {

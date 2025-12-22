@@ -40,8 +40,8 @@ export const limiterLogin = rateLimit({
 
 //prevent spam accounts
 export const limiterRegister = rateLimit({
-  windowMs: 60 * MINUTE,
-  max: 3,
+  windowMs: 5 * MINUTE,
+  max: 5,
   message: "Too many accounts created from this IP.",
   standardHeaders: true,
   legacyHeaders: false,
