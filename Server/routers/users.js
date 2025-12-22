@@ -9,11 +9,12 @@ import {
   userLoginSchema,
   userRegistrationSchema,
 } from "../validation/users.js";
+import winstonLogger from "../middleware/winston.js";
 
 const router = express.Router();
 
 // get all users (admin)
-router.get("/", [auth, admin], async (req, res) => {
+router.get("/", [auth, admin, winstonLogger], async (req, res) => {
   try {
     const users = await UserModel.find()
       .select("-password -__v")
@@ -27,7 +28,7 @@ router.get("/", [auth, admin], async (req, res) => {
 });
 
 // get me (auth users)
-router.get("/me", auth, async (req, res) => {
+router.get("/me", [auth, winstonLogger], async (req, res) => {
   try {
     const id = req.user._id;
 
