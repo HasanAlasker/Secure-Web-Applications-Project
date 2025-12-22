@@ -18,7 +18,7 @@ app.use(helmet());
 app.use(cookieParser());
 app.use(
   cors({
-    origin: "https://secure-project.netlify.app/", //change this when deployed ot netlify
+    origin: "https://secure-project.netlify.app",
     credentials: true,
   })
 );
