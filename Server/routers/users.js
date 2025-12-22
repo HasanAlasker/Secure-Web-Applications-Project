@@ -14,6 +14,13 @@ import { limiterLogin, limiterRegister } from "../middleware/limiter.js";
 
 const router = express.Router();
 
+const cookieOptions = {
+  httpOnly: true,
+  secure: process.env.NODE_ENV === "production",
+  sameSite: process.env.NODE_ENV === "production" ? "none" : "lax",
+  maxAge: 24 * 60 * 60 * 1000, // 1 day
+};
+
 // get all users (admin)
 router.get("/", [auth, admin, winstonLogger], async (req, res) => {
   try {
@@ -71,7 +78,10 @@ router.post(
         "updatedAt",
       ]);
 
-      return res.status(201).cookie("token", token).send(response);
+      return res
+        .status(201)
+        .cookie("token", token, cookieOptions)
+        .send(response);
     } catch (err) {
       console.log(err);
       return res.status(500).send(err);
@@ -106,7 +116,10 @@ router.post(
         "updatedAt",
       ]);
 
-      return res.status(200).cookie("token", token).send(response);
+      return res
+        .status(200)
+        .cookie("token", token, cookieOptions)
+        .send(response);
     } catch (err) {
       console.log(err);
       return res.status(500).send(err);
