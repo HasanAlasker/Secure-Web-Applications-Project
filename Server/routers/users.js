@@ -10,6 +10,7 @@ import {
   userRegistrationSchema,
 } from "../validation/users.js";
 import winstonLogger from "../middleware/winston.js";
+import { limiterLogin, limiterRegister } from "../middleware/limiter.js";
 
 const router = express.Router();
 
@@ -43,66 +44,75 @@ router.get("/me", [auth, winstonLogger], async (req, res) => {
 });
 
 // user registration
-router.post("/register", validate(userRegistrationSchema), async (req, res) => {
-  try {
-    const data = req.body;
-    const checkExistingUser = await UserModel.findOne({ email: data.email });
-    if (checkExistingUser)
-      return res.status(400).send("User already registered");
+router.post(
+  "/register",
+  [validate(userRegistrationSchema), limiterRegister],
+  async (req, res) => {
+    try {
+      const data = req.body;
+      const checkExistingUser = await UserModel.findOne({ email: data.email });
+      if (checkExistingUser)
+        return res.status(400).send("User already registered");
 
-    const newUser = new UserModel(data);
-    newUser.password = await newUser.hashPassword(data.password);
+      const newUser = new UserModel(data);
+      newUser.password = await newUser.hashPassword(data.password);
 
-    await newUser.save();
+      await newUser.save();
 
-    const token = await newUser.generateAuthToken();
+      const token = await newUser.generateAuthToken();
 
-    const response = _.pick(newUser, [
-      "_id",
-      "name",
-      "email",
-      "role",
-      "isVerified",
-      "createdAt",
-      "updatedAt",
-    ]);
+      const response = _.pick(newUser, [
+        "_id",
+        "name",
+        "email",
+        "role",
+        "isVerified",
+        "createdAt",
+        "updatedAt",
+      ]);
 
-    return res.status(201).cookie("token", token).send(response);
-  } catch (err) {
-    console.log(err);
-    return res.status(500).send(err);
+      return res.status(201).cookie("token", token).send(response);
+    } catch (err) {
+      console.log(err);
+      return res.status(500).send(err);
+    }
   }
-});
+);
 
 // user login
-router.post("/login", validate(userLoginSchema), async (req, res) => {
-  try {
-    const data = req.body;
+router.post(
+  "/login",
+  [validate(userLoginSchema), limiterLogin],
+  async (req, res) => {
+    try {
+      const data = req.body;
 
-    const user = await UserModel.findOne({ email: data.email });
-    if (!user) return res.status(400).send("Wrong email or password");
+      const user = await UserModel.findOne({ email: data.email });
+      if (!user) return res.status(400).send("Wrong email or password");
 
-    const validPassword = await bcrypt.compare(data.password, user.password);
-    if (!validPassword) return res.status(400).send("Wrong email or password");
+      const validPassword = await bcrypt.compare(data.password, user.password);
+      if (!validPassword)
+        return res.status(400).send("Wrong email or password");
 
-    const token = user.generateAuthToken();
+      const token = user.generateAuthToken();
 
-    const response = _.pick(user, [
-      "_id",
-      "name",
-      "email",
-      "role",
-      "isVerified",
-      "createdAt",
-      "updatedAt",
-    ]);
+      const response = _.pick(user, [
+        "_id",
+        "name",
+        "email",
+        "role",
+        "isVerified",
+        "createdAt",
+        "updatedAt",
+      ]);
 
-    return res.status(200).cookie("token", token).send(response);
-  } catch (err) {
-    console.log(err);
-    return res.status(500).send(err);
+      return res.status(200).cookie("token", token).send(response);
+    } catch (err) {
+      console.log(err);
+      return res.status(500).send(err);
+    }
   }
-});
+);
 
 router.post("/logout", async (req, res) => {
   try {
