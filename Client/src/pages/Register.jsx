@@ -28,7 +28,7 @@ const initialValues = {
 };
 
 export default function Register() {
-  const { user, loading, register, error } = useAuth();
+  const { user, loading, register, error, errMsg } = useAuth();
   const navigate = useNavigate();
 
   const handleSubmit = async (values, { setSubmitting, setStatus }) => {
@@ -116,7 +116,7 @@ export default function Register() {
 
               {error && (
                 <div className="error-message large">
-                  Something went wrong, Please try again
+                  {errMsg ? errMsg : "Something went wrong, Please try again"}
                 </div>
               )}
 

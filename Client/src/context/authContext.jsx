@@ -59,13 +59,13 @@ export function AuthProvider({ children }) {
   const register = async (data) => {
     try {
       setLoading(true);
+      setError(false)
       const res = await registerUser(data);
       if (res.ok) {
         setUser(res.data);
         navigate("/");
       } else {
         setError(true);
-        console.log(res.error);
         setErrMsg(res.error);
       }
       setLoading(false);
@@ -103,6 +103,7 @@ export function AuthProvider({ children }) {
     error,
     isAdmin,
     isUser,
+    errMsg
   };
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;

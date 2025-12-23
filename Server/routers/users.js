@@ -60,9 +60,9 @@ router.post(
     try {
       const data = req.body;
       const checkExistingUser = await UserModel.findOne({ email: data.email });
-      if (checkExistingUser)
-        return res.status(400).send("User already registered");
-
+      if (checkExistingUser) {
+        return res.status(400).json({ message: "User already registered" });
+      }
       const newUser = new UserModel(data);
       newUser.password = await newUser.hashPassword(data.password);
 
@@ -83,7 +83,7 @@ router.post(
       return res
         .status(201)
         .cookie("token", token, cookieOptions)
-        .send(response);
+        .json(response);
     } catch (err) {
       logger.error("Error:", err);
       return res.status(500).send("Server Error");
