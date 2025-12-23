@@ -300,6 +300,14 @@ h4 {
   margin-top: 3rem;
 }
 
+.disclaimer-red {
+  background: #ffd9cd;
+  border-left: 4px solid #ff4d07;
+  padding: 1.5rem;
+  border-radius: 8px;
+  margin-top: 3rem;
+}
+
 .disclaimer p {
   margin: 0;
   color: #856404;

@@ -8,7 +8,7 @@ function Nav({ onMenuOpen }) {
       <nav>
         <div className="big linksCont">
           <a href="/">Home</a>
-          {user && isUser && <a href="/me">My Info</a>}
+          {user && isUser && !user.isDeleted && <a href="/me">My Info</a>}
           {user && isAdmin && <a href="/admin">Users Info</a>}
         </div>
         <div>

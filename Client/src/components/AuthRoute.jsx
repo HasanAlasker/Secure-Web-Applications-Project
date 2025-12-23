@@ -9,7 +9,7 @@ export default function AuthRoute() {
     return <div>Loading...</div>;
   }
 
-  if (!user || !isUser) {
+  if (!user || !isUser || user.isDeleted) {
     return <Navigate to="/login" replace />;
   }
 

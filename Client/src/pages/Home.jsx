@@ -17,6 +17,13 @@ export default function Home() {
           </p>
         </div>
 
+        {user && user.isDeleted === true && <div className="disclaimer-red">
+          <p>
+            ⛔ <strong>Blocked Account:</strong> This account was blocked by the
+            admins for a suspected terms of service violation
+          </p>
+        </div>}
+
         <div className="security-info">
           <h2>🛡️ How is this app secure?</h2>
 
