@@ -15,6 +15,7 @@ export function useAuth() {
 export function AuthProvider({ children }) {
   const [user, setUser] = useState(null);
   const [error, setError] = useState(false);
+  const [errMsg, setErrMsg] = useState(null);
   const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
 
@@ -44,6 +45,8 @@ export function AuthProvider({ children }) {
         navigate("/");
       } else {
         setError(true);
+        console.log(res.error);
+        setErrMsg(res.error);
       }
       setLoading(false);
     } catch (error) {
@@ -62,6 +65,8 @@ export function AuthProvider({ children }) {
         navigate("/");
       } else {
         setError(true);
+        console.log(res.error);
+        setErrMsg(res.error);
       }
       setLoading(false);
     } catch (error) {

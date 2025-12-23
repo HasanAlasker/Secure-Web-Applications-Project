@@ -11,6 +11,7 @@ import {
 } from "../validation/users.js";
 import winstonLogger from "../middleware/winston.js";
 import { limiterLogin, limiterRegister } from "../middleware/limiter.js";
+import { logger } from "../utils/winston.js";
 
 const router = express.Router();
 
@@ -31,7 +32,8 @@ router.get("/", [auth, admin, winstonLogger], async (req, res) => {
 
     return res.status(200).send(users);
   } catch (err) {
-    return res.status(500).send(err);
+    logger.error("Error:", err);
+    return res.status(500).send("Server Error");
   }
 });
 
@@ -45,8 +47,8 @@ router.get("/me", [auth, winstonLogger], async (req, res) => {
 
     return res.status(201).send(user);
   } catch (err) {
-    console.log(err);
-    return res.status(500).send(err);
+    logger.error("Error:", err);
+    return res.status(500).send("Server Error");
   }
 });
 
@@ -83,8 +85,8 @@ router.post(
         .cookie("token", token, cookieOptions)
         .send(response);
     } catch (err) {
-      console.log(err);
-      return res.status(500).send(err);
+      logger.error("Error:", err);
+      return res.status(500).send("Server Error");
     }
   }
 );
@@ -122,7 +124,7 @@ router.post(
         .send(response);
     } catch (err) {
       console.log(err);
-      return res.status(500).send(err);
+      return res.status(500).send("Server Error");
     }
   }
 );
@@ -134,8 +136,8 @@ router.post("/logout", async (req, res) => {
       .status(200)
       .send({ message: "Logged out successfully" });
   } catch (error) {
-    console.log(err);
-    return res.status(500).send(err);
+    logger.error("Error:", err);
+    return res.status(500).send("Server Error");
   }
 });
 
