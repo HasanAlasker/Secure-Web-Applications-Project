@@ -33,6 +33,7 @@ export default function Admin() {
       name={user.name}
       email={user.email}
       role={user.role}
+      isDeleted={user.isDeleted}
       createdAt={user.createdAt}
     />
   ));

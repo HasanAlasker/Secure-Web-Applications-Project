@@ -61,3 +61,27 @@ export const logoutUser = async () => {
     };
   }
 };
+
+export const deleteUser = async (id) => {
+  try {
+    const res = await api.put(`${endPoint}/delete/${id}`);
+    return { ok: true, data: res.data };
+  } catch (error) {
+    return { 
+      ok: false, 
+      error: error.response?.data?.message || error.message 
+    };
+  }
+};
+
+export const undeleteUser = async (id) => {
+  try {
+    const res = await api.put(`${endPoint}/un-delete/${id}`);
+    return { ok: true, data: res.data };
+  } catch (error) {
+    return { 
+      ok: false, 
+      error: error.response?.data?.message || error.message 
+    };
+  }
+};

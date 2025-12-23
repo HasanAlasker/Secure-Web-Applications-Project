@@ -1,4 +1,5 @@
 import express from "express";
+import mongoose from "mongoose";
 import _ from "lodash";
 import bcrypt from "bcrypt";
 import admin from "../middleware/admin.js";
@@ -76,6 +77,7 @@ router.post(
         "email",
         "role",
         "isVerified",
+        "isDeleted",
         "createdAt",
         "updatedAt",
       ]);
@@ -114,6 +116,7 @@ router.post(
         "email",
         "role",
         "isVerified",
+        "isDeleted",
         "createdAt",
         "updatedAt",
       ]);
@@ -135,8 +138,54 @@ router.post("/logout", async (req, res) => {
       .clearCookie("token")
       .status(200)
       .send({ message: "Logged out successfully" });
-  } catch (error) {
+  } catch (err) {
     logger.error("Error:", err);
+    return res.status(500).send("Server Error");
+  }
+});
+
+//soft delete user (admin)
+router.put("/delete/:id", [auth, admin], async (req, res) => {
+  try {
+    const id = req.params.id;
+
+    if (!id || !mongoose.Types.ObjectId.isValid(id)) {
+      return res.status(400).send("Invalid ad ID");
+    }
+
+    const user = await UserModel.findByIdAndUpdate(
+      id,
+      { isDeleted: true },
+      { runValidators: true, new: true }
+    );
+
+    return res.status(202).send(user);
+  } catch (err) {
+    logger.error("Error:", err);
+    console.log(err)
+    return res.status(500).send("Server Error");
+  }
+});
+
+//soft delete user (admin)
+router.put("/un-delete/:id", [auth, admin], async (req, res) => {
+  try {
+    const id = req.params.id;
+
+    if (!id || !mongoose.Types.ObjectId.isValid(id)) {
+      return res.status(400).send("Invalid ad ID");
+    }
+
+    const user = await UserModel.findByIdAndUpdate(
+      id,
+      { isDeleted: false },
+      { runValidators: true, new: true }
+    );
+
+    return res.status(202).send(user);
+  } catch (err) {
+    logger.error("Error:", err);
+    console.log(err)
     return res.status(500).send("Server Error");
   }
 });

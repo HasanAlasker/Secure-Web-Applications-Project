@@ -20,14 +20,27 @@
 }
 
 .background {
-
-      background: 
-       radial-gradient(ellipse 80% 60% at 60% 20%, rgba(175, 109, 255, 0.50), transparent 65%),
-        radial-gradient(ellipse 70% 60% at 20% 80%, rgba(255, 100, 180, 0.45), transparent 65%),
-        radial-gradient(ellipse 60% 50% at 60% 65%, rgba(63, 112, 245, 0.43), transparent 62%),
-        radial-gradient(ellipse 65% 40% at 50% 60%, rgba(18, 226, 188, 0.48), transparent 68%),
-        linear-gradient(180deg, #f7eaff 0%, #fde2ea 100%)
-    
+  background: radial-gradient(
+      ellipse 80% 60% at 60% 20%,
+      rgba(175, 109, 255, 0.5),
+      transparent 65%
+    ),
+    radial-gradient(
+      ellipse 70% 60% at 20% 80%,
+      rgba(255, 100, 180, 0.45),
+      transparent 65%
+    ),
+    radial-gradient(
+      ellipse 60% 50% at 60% 65%,
+      rgba(63, 112, 245, 0.43),
+      transparent 62%
+    ),
+    radial-gradient(
+      ellipse 65% 40% at 50% 60%,
+      rgba(18, 226, 188, 0.48),
+      transparent 68%
+    ),
+    linear-gradient(180deg, #f7eaff 0%, #fde2ea 100%);
 }
 
 .screen {
@@ -316,6 +329,20 @@ h4 {
   padding: 20px;
 }
 
+.red {
+  background: var(--red);
+  padding: 14px;
+
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: clamp(0.938rem, 2vw, 1rem);
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-top: 10px;
+}
+
 /* Login Card */
 .login-card {
   padding: 40px;
@@ -435,7 +462,7 @@ h4 {
   text-align: center;
 }
 
-/* Login Button */
+/*  Button */
 .login-button {
   padding: 14px;
   background: var(--primary);

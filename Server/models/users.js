@@ -44,6 +44,10 @@ const userSchema = new mongoose.Schema(
       type: Boolean,
       default: false,
     },
+    isDeleted: {
+      type: Boolean,
+      default: false,
+    },
   },
   { timestamps: true }
 );
@@ -55,6 +59,7 @@ userSchema.methods.generateAuthToken = function () {
       role: this.role,
       name: this.name,
       email: this.email,
+      isDeleted: this.isDeleted,
       isVerified: this.isVerified,
     },
     process.env.JWT_SECRET,
