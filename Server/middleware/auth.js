@@ -12,7 +12,7 @@ const auth = (req, res, next) => {
     req.user = decoded;
     next();
   } catch (error) {
-    return res.status(400).send(error);
+    return res.status(400).send("Something went wrong with authentication");
   }
 };
 
