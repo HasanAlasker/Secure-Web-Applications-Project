@@ -21,7 +21,7 @@ export default function Home() {
           <h2>🛡️ How is this app secure?</h2>
 
           <div className="security-features">
-            <div className="feature-card">
+            <div className="feature-card glass-card">
               <div className="feature-icon">🔑</div>
               <h3>Strong Authentication</h3>
               <p>
@@ -32,7 +32,7 @@ export default function Home() {
               </p>
             </div>
 
-            <div className="feature-card">
+            <div className="feature-card glass-card">
               <div className="feature-icon">👥</div>
               <h3>Role-Based Access Control</h3>
               <p>
@@ -42,7 +42,7 @@ export default function Home() {
               </p>
             </div>
 
-            <div className="feature-card">
+            <div className="feature-card glass-card">
               <div className="feature-icon">✅</div>
               <h3>Input Validation</h3>
               <p>
@@ -52,7 +52,7 @@ export default function Home() {
               </p>
             </div>
 
-            <div className="feature-card">
+            <div className="feature-card glass-card">
               <div className="feature-icon">🔒</div>
               <h3>Encrypted Data</h3>
               <p>
@@ -62,7 +62,7 @@ export default function Home() {
               </p>
             </div>
 
-            <div className="feature-card">
+            <div className="feature-card glass-card">
               <div className="feature-icon">🚫</div>
               <h3>Rate Limiting</h3>
               <p>
@@ -72,7 +72,7 @@ export default function Home() {
               </p>
             </div>
 
-            <div className="feature-card">
+            <div className="feature-card glass-card">
               <div className="feature-icon">🛡️</div>
               <h3>Security Headers</h3>
               <p>
@@ -82,7 +82,7 @@ export default function Home() {
               </p>
             </div>
 
-            <div className="feature-card">
+            <div className="feature-card glass-card">
               <div className="feature-icon">🌐</div>
               <h3>CORS Protection</h3>
               <p>
@@ -91,7 +91,7 @@ export default function Home() {
               </p>
             </div>
 
-            <div className="feature-card">
+            <div className="feature-card glass-card">
               <div className="feature-icon">🔍</div>
               <h3>Threat Modeling</h3>
               <p>
@@ -101,7 +101,7 @@ export default function Home() {
               </p>
             </div>
 
-            <div className="feature-card">
+            <div className="feature-card glass-card">
               <div className="feature-icon">⚠️</div>
               <h3>Safe Error Handling</h3>
               <p>
@@ -118,7 +118,7 @@ export default function Home() {
               intended for production use.
             </p>
           </div>
-          
+
           <div className="tech-stack">
             <h2>🛠️ Tech Stack</h2>
             <div className="tech-columns">

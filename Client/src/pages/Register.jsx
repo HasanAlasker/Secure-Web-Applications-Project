@@ -42,8 +42,8 @@ export default function Register() {
   };
 
   return (
-    <div className="login-container">
-      <div className="login-card">
+    <div className="login-container background">
+      <div className="login-card glass-card">
         <h1 className="login-title">Create an account</h1>
         <p className="login-subtitle">
           Please enter your information to create your account

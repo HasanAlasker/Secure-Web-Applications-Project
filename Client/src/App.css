@@ -7,14 +7,27 @@
 :root {
   --background: rgb(255, 247, 247);
   --black: #202020;
+  --darkText: #1f1f1f;
   --post: rgba(255, 255, 255, 0.5);
   --white: white;
+  --red: red;
   --gray: #a39e9e;
   --primary: linear-gradient(135deg, #5574ff 0%, #6b73e9 100%);
   --rgb: rgba(255, 56, 93, 1);
   --primText: #5574ff;
   --hoverPri: rgb(220, 51, 82) 0%;
   --hoverSec: rgb(236, 236, 236);
+}
+
+.background {
+
+      background: 
+       radial-gradient(ellipse 80% 60% at 60% 20%, rgba(175, 109, 255, 0.50), transparent 65%),
+        radial-gradient(ellipse 70% 60% at 20% 80%, rgba(255, 100, 180, 0.45), transparent 65%),
+        radial-gradient(ellipse 60% 50% at 60% 65%, rgba(63, 112, 245, 0.43), transparent 62%),
+        radial-gradient(ellipse 65% 40% at 50% 60%, rgba(18, 226, 188, 0.48), transparent 68%),
+        linear-gradient(180deg, #f7eaff 0%, #fde2ea 100%)
+    
 }
 
 .screen {
@@ -136,7 +149,6 @@ a:hover {
 }
 
 .feature-card {
-  background: white;
   padding: 2rem;
   border-radius: 12px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
@@ -301,25 +313,65 @@ h4 {
   display: flex;
   align-items: center;
   justify-content: center;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   padding: 20px;
 }
 
 /* Login Card */
 .login-card {
-  background: white;
   padding: 40px;
   border-radius: 12px;
-  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
   width: 100%;
   max-width: 420px;
+}
+.glass-card {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(9px);
+  -webkit-backdrop-filter: blur(9px);
+  border-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.5),
+    inset 0 -1px 0 rgba(255, 255, 255, 0.1),
+    inset 0 0 12px 6px rgba(255, 255, 255, 0.6);
+  position: relative;
+  overflow: hidden;
+}
+
+.glass-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.8),
+    transparent
+  );
+}
+
+.glass-card::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 1px;
+  height: 100%;
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.8),
+    transparent,
+    rgba(255, 255, 255, 0.3)
+  );
 }
 
 /* Title and Subtitle */
 .login-title {
   font-size: clamp(1.5rem, 4vw, 1.75rem);
   font-weight: 700;
-  color: #333;
+  color: var(--darkText);
   margin-bottom: 8px;
   text-align: center;
 }
@@ -347,8 +399,8 @@ h4 {
 
 .form-group label {
   font-size: clamp(0.813rem, 1.5vw, 0.875rem);
+  color: var(--darkText);
   font-weight: 600;
-  color: #333;
 }
 
 /* Input Fields */
@@ -367,12 +419,12 @@ h4 {
 }
 
 .form-group input.input-error {
-  border-color: #ef4444;
+  border-color: var(--red);
 }
 
 /* Error Message */
 .error-message {
-  color: #ef4444;
+  color: var(--red);
   font-size: clamp(0.75rem, 1.5vw, 0.813rem);
   margin-top: -4px;
 }
@@ -386,7 +438,7 @@ h4 {
 /* Login Button */
 .login-button {
   padding: 14px;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: var(--primary);
   color: white;
   border: none;
   border-radius: 8px;
