@@ -18,11 +18,14 @@ app.use(helmet());
 app.use(cookieParser());
 app.use(
   cors({
-    origin: "https://secure-project.netlify.app",
+    origin:
+      process.env.NODE_ENV === "production"
+        ? "https://secure-project.netlify.app"
+        : "http://localhost:5173",
     credentials: true,
   })
 );
-app.use(globalLimit)
+app.use(globalLimit);
 
 mongoose
   .connect(process.env.DATABASE_URL)
