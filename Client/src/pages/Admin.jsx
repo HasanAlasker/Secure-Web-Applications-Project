@@ -12,7 +12,7 @@ export default function Admin() {
     fetchUsers();
   }, []);
 
-  if (loading) console.log("fetching users...");
+  if (loading) return <h2 className="loading">Loading users...</h2>;
 
   const admins = users.filter((user) => user.role === "admin");
   const normalUsers = users.filter((user) => user.role === "user");

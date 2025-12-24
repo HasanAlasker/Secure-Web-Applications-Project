@@ -6,7 +6,7 @@ export default function UserRoute() {
   const { isAdmin, loading, user } = useAuth();
 
   if (loading) {
-    return <div>Loading...</div>;
+    return <h2 className="loading">Loading...</h2>;
   }
 
   if (!user || !isAdmin) {

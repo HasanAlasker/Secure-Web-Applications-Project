@@ -6,7 +6,7 @@ export default function AuthRoute() {
   const { isUser, loading, user } = useAuth();
 
   if (loading) {
-    return <div>Loading...</div>;
+    return <h2 className="loading">Loading...</h2>;
   }
 
   if (!user || !isUser || user.isDeleted) {
