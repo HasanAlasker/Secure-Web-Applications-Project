@@ -15,6 +15,7 @@ export default function Card({
   const { isAdmin, loading } = useAuth();
 
   const [isLoading, setLoading] = useState(false);
+  const [btn, setBtn] = useState(isDeleted);
 
   const handleDelete = async () => {
     setLoading(true);
@@ -24,6 +25,7 @@ export default function Card({
         const result = await deleteUser(id);
         if (result.ok) {
           alert(`${name} account deleted successfully!`);
+          setBtn(!btn);
         } else alert("Something went wrong!", err);
       } catch (err) {
         alert("Something went wrong!", err);
@@ -40,6 +42,7 @@ export default function Card({
         const result = await undeleteUser(id);
         if (result.ok) {
           alert(`${name} account restored successfully!`);
+          setBtn(!btn);
         } else alert("Something went wrong!", err);
       } catch (err) {
         alert("Something went wrong!", err);
@@ -49,7 +52,7 @@ export default function Card({
   };
   return (
     <div className="feature-card card">
-      <h4 className={isDeleted ? "logout" : ""}>{title || "My Info"}</h4>
+      <h4 className={btn ? "logout" : ""}>{title || "My Info"}</h4>
       {id && (
         <p>
           Id: <strong>{id || "Loading..."}</strong>
@@ -69,7 +72,7 @@ export default function Card({
       <p>
         Joined At: <strong>{formatDate(createdAt) || "Loading..."}</strong>
       </p>
-      {isAdmin && title !== "Admin Info" && !isDeleted && (
+      {isAdmin && title !== "Admin Info" && !btn && (
         <button
           disabled={isLoading || loading}
           className="red"
@@ -78,14 +81,13 @@ export default function Card({
           {isLoading ? "Deleting..." : "Delete user"}
         </button>
       )}
-      {isAdmin && title !== "Admin Info" && isDeleted && (
+      {isAdmin && title !== "Admin Info" && btn && (
         <button
           disabled={isLoading || loading}
           className="login-button"
           onClick={handleUnDelete}
         >
           {isLoading ? "Un-Deleting..." : "Un-Delete user"}
-          
         </button>
       )}
     </div>
