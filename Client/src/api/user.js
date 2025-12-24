@@ -85,3 +85,15 @@ export const undeleteUser = async (id) => {
     };
   }
 };
+
+export const awake = async () => {
+  try {
+    const res = await api.get(`${endPoint}/awake`);
+    return { ok: true, data: res.data };
+  } catch (error) {
+    return { 
+      ok: false, 
+      error: error.response?.data?.message || error.message 
+    };
+  }
+};

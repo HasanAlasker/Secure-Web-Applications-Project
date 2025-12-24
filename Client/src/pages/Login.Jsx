@@ -1,9 +1,11 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useAuth } from "../context/authContext";
 import { ErrorMessage, Field, Form, Formik } from "formik";
 import * as Yup from "yup";
 import { useNavigate } from "react-router-dom";
 import "../App.css";
+import useApi from "../hooks/useApi";
+import { awake, getMe } from "../api/user";
 
 const validitionSchema = Yup.object({
   email: Yup.string()
@@ -20,7 +22,19 @@ const initialValues = {
 
 export default function Login() {
   const { user, loading, login, error } = useAuth();
+
+  const {
+    data,
+    request,
+    loading: fetching,
+    error: errorFetching,
+  } = useApi(awake);
+
   const navigate = useNavigate();
+
+  useEffect(() => {
+    request();
+  }, []);
 
   const handleSubmit = async (values, { setSubmitting, setStatus }) => {
     const loginData = {
@@ -83,7 +97,11 @@ export default function Login() {
                 type="submit"
                 className="login-button"
               >
-                {isSubmitting || loading ? "Logging in..." : "Login"}
+                {isSubmitting || loading
+                  ? "Logging in..."
+                  : fetching
+                  ? "Connecting server..."
+                  : "Login"}
               </button>
 
               {error && (

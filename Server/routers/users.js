@@ -53,6 +53,16 @@ router.get("/me", [auth, winstonLogger], async (req, res) => {
   }
 });
 
+// check if server is up
+router.get("/awake", async (req, res) => {
+  try {
+    return res.status(201).send("Awake");
+  } catch (err) {
+    logger.error("Error:", err);
+    return res.status(500).send("Server Error");
+  }
+});
+
 // user registration
 router.post(
   "/register",
@@ -162,7 +172,7 @@ router.put("/delete/:id", [auth, admin], async (req, res) => {
     return res.status(202).send(user);
   } catch (err) {
     logger.error("Error:", err);
-    console.log(err)
+    console.log(err);
     return res.status(500).send("Server Error");
   }
 });
@@ -185,7 +195,7 @@ router.put("/un-delete/:id", [auth, admin], async (req, res) => {
     return res.status(202).send(user);
   } catch (err) {
     logger.error("Error:", err);
-    console.log(err)
+    console.log(err);
     return res.status(500).send("Server Error");
   }
 });
