@@ -93,14 +93,14 @@ export default function Login() {
               </div>
 
               <button
-                disabled={isSubmitting || loading}
+                disabled={isSubmitting || loading || fetching}
                 type="submit"
                 className="login-button"
               >
-                {isSubmitting || loading
-                  ? "Logging in..."
-                  : fetching
+                {fetching || loading
                   ? "Connecting server..."
+                  : isSubmitting
+                  ? "Logging in..."
                   : "Login"}
               </button>
 
