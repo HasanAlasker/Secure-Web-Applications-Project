@@ -25,6 +25,9 @@ The project demonstrates **secure-by-design development practices**, including:
 
 ⚠️**This repository is intended for educational and demonstration purposes only and is not a production system.**
 
+> **Important Note.**  
+> To view documents in VS code I recomend using the extention: vscode-pdf.
+
 ---
 
 ## 🛠 Tech Stack
