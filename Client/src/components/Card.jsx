@@ -51,25 +51,25 @@ export default function Card({
     setLoading(false);
   };
   return (
-    <div className="feature-card card">
+    <div className="feature-card card glass-card">
       <h4 className={btn ? "logout" : ""}>{title || "My Info"}</h4>
       {id && (
-        <p>
+        <p className="userInfo">
           Id: <strong>{id || "Loading..."}</strong>
         </p>
       )}
-      <p>
+      <p className="userInfo">
         Name: <strong>{name || "Loading..."}</strong>
       </p>
-      <p>
+      <p className="userInfo">
         Email: <strong>{email || "Loading..."}</strong>
       </p>
       {role && (
-        <p>
+        <p className="userInfo">
           Role: <strong>{role || "Loading..."}</strong>
         </p>
       )}
-      <p>
+      <p className="userInfo">
         Joined At: <strong>{formatDate(createdAt) || "Loading..."}</strong>
       </p>
       {isAdmin && title !== "Admin Info" && !btn && (

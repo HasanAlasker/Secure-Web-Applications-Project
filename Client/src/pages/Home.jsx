@@ -9,7 +9,7 @@ export default function Home() {
     <div>
       <Nav />
       <div className="screen">
-        <div className="hero-section">
+        <div className="hero-section glass-card-b">
           <h1 className="iconAndText">
             <span className="material-symbols-outlined bigIcon">lock</span> Welcome
             to the Secure App
@@ -134,7 +134,7 @@ export default function Home() {
             </div>
           </div>
 
-          <div className="disclaimer">
+          <div className="disclaimer ">
             <p>
               ⚠️ <strong>Educational Purpose:</strong> This project is developed
               for academic demonstration of secure coding practices and is not
@@ -142,7 +142,7 @@ export default function Home() {
             </p>
           </div>
 
-          <div className="tech-stack">
+          <div className="tech-stack glass-card">
             <h2 className="iconAndText"><span className="material-symbols-outlined bigIcon">home_repair_service</span> Tech Stack</h2>
             <div className="tech-columns">
               <div className="tech-column">
@@ -179,7 +179,7 @@ export default function Home() {
           </div>
 
           {!user && (
-            <div className="cta-section">
+            <div className="cta-section glass-card-b">
               <h2>Ready to experience secure authentication?</h2>
               <p>Create an account or log in to explore the secure features.</p>
               <div className="cta-buttons">

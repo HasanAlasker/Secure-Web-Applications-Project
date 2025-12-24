@@ -3,7 +3,42 @@
   margin: 0;
   padding: 0;
   font-family: "Roboto", sans-serif;
+  
 }
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+html::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  opacity: 0.4; /* 👈 control background opacity here */
+  background: radial-gradient(
+      ellipse 80% 60% at 60% 20%,
+      rgba(175, 109, 255, 0.5),
+      transparent 65%
+    ),
+    radial-gradient(
+      ellipse 70% 60% at 20% 80%,
+      rgba(255, 100, 180, 0.45),
+      transparent 65%
+    ),
+    radial-gradient(
+      ellipse 60% 50% at 60% 65%,
+      rgba(63, 112, 245, 0.43),
+      transparent 62%
+    ),
+    radial-gradient(
+      ellipse 65% 40% at 50% 60%,
+      rgba(18, 226, 188, 0.48),
+      transparent 68%
+    ),
+    linear-gradient(180deg, #f7eaff 0%, #fde2ea 100%);
+}
+
 :root {
   --background: rgb(255, 247, 247);
   --black: #202020;
@@ -35,7 +70,7 @@
   font-size: clamp(1rem, 9vw, 3.5rem);
 }
 .gold {
-  color: gold;
+  color: rgb(255, 193, 59);
 }
 .purple{
   color: purple;
@@ -50,7 +85,7 @@
   color: rgb(74, 48, 14);
 }
 .green{
-  color: rgb(84, 255, 84);
+  color: rgb(79, 179, 79);
 }
 .redI{
   color: rgb(255, 92, 67);
@@ -213,7 +248,20 @@ a:hover {
 }
 
 .card {
+  margin-top: 3rem;
   margin-bottom: 3rem;
+}
+
+.card>.login-button{
+  margin-top: 3rem;
+}
+.card>.red{
+  margin-top: 2rem;
+}
+
+.userInfo{
+  font-size: 1.5rem !important;
+  color: var(--black) !important;
 }
 
 .feature-card:hover {
@@ -384,7 +432,6 @@ h4 {
 .red {
   background: var(--red);
   padding: 14px;
-
   color: white;
   border: none;
   border-radius: 8px;
@@ -393,6 +440,11 @@ h4 {
   cursor: pointer;
   transition: all 0.3s ease;
   margin-top: 10px;
+}
+
+.red:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 5px 20px rgba(234, 102, 102, 0.4);
 }
 
 .red:disabled {
@@ -437,6 +489,51 @@ h4 {
 }
 
 .glass-card::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 1px;
+  height: 100%;
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.8),
+    transparent,
+    rgba(255, 255, 255, 0.3)
+  );
+}
+
+
+.glass-card-b {
+  background: rgba(85, 116, 255, 0.697);
+  backdrop-filter: blur(9px);
+  -webkit-backdrop-filter: blur(9px);
+  border-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1),
+    inset 0 1px 0 rgba(231, 235, 255, 0.479),
+    inset 0 -1px 0 rgba(255, 255, 255, 0.1),
+    inset 0 0 12px 6px rgba(185, 197, 251, 0.479);
+  position: relative;
+  overflow: hidden;
+}
+
+.glass-card-b::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.8),
+    transparent
+  );
+}
+
+.glass-card-b::after {
   content: "";
   position: absolute;
   top: 0;
