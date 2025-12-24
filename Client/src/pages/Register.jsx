@@ -10,10 +10,15 @@ import useApi from "../hooks/useApi";
 const validitionSchema = Yup.object({
   name: Yup.string()
     .min(2, "Full name must be at least 2 characters")
-    .required("Name is required"),
+    .required("Name is required")
+    .matches(/^[a-zA-Z\s'-]+$/),
   email: Yup.string()
     .email("Invalid email address")
-    .required("Email is required"),
+    .required("Email is required")
+    .matches(
+      /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
+      "Please enter a valid email address (e.g. name@example.com)"
+    ),
   password: Yup.string()
     .min(8, "Password must be at least 8 characters")
     .matches(
@@ -132,9 +137,14 @@ export default function Register() {
                   : "Sign Up"}
               </button>
 
-              {error && (
+              {error && !errorFetching && (
                 <div className="error-message large">
-                  {errMsg ? errMsg : "Something went wrong, Please try again"}
+                  {errMsg ? errMsg : "Couldn't Register, Please try again"}
+                </div>
+              )}
+              {errorFetching && (
+                <div className="error-message large">
+                  Couldn't connect to the server
                 </div>
               )}
 

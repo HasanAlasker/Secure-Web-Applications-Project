@@ -11,8 +11,18 @@ const validitionSchema = Yup.object({
   email: Yup.string()
     .email("Invalid email address")
     .required("Email is required")
+    .matches(
+      /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
+      "Please enter a valid email address (e.g. name@example.com)"
+    ),
+  password: Yup.string()
+    .min(8, "Incorrect email or password")
+    .matches(
+      /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]+$/,
+      "Incorrect email or password"
+    )
+    .required("Password is required")
     .trim(),
-  password: Yup.string().required("Password is required").trim(),
 });
 
 const initialValues = {
@@ -104,9 +114,14 @@ export default function Login() {
                   : "Login"}
               </button>
 
-              {error && (
+              {error && !errorFetching && (
                 <div className="error-message large">
                   Wrong email or password
+                </div>
+              )}
+              {errorFetching && (
+                <div className="error-message large">
+                  Couldn't connect to the server
                 </div>
               )}
 
