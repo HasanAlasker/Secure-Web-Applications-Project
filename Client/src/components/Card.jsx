@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { formatDate } from "../functions/formatDate";
 import { deleteUser, undeleteUser } from "../api/user";
 import { useAuth } from "../context/authContext";
@@ -12,9 +12,12 @@ export default function Card({
   id,
   isDeleted,
 }) {
-  const { isAdmin } = useAuth();
+  const { isAdmin, loading } = useAuth();
+
+  const [isLoading, setLoading] = useState(false);
 
   const handleDelete = async () => {
+    setLoading(true);
     let text = `Are you sure you want to delete ${name} account?`;
     if (confirm(text) === true) {
       try {
@@ -26,10 +29,12 @@ export default function Card({
         alert("Something went wrong!", err);
       }
     }
+    setLoading(false);
   };
 
   const handleUnDelete = async () => {
     let text = `Are you sure you want to restore ${name} account?`;
+    setLoading(true);
     if (confirm(text) === true) {
       try {
         const result = await undeleteUser(id);
@@ -40,37 +45,47 @@ export default function Card({
         alert("Something went wrong!", err);
       }
     }
+    setLoading(false);
   };
   return (
     <div className="feature-card card">
-      <h4 className={isDeleted? 'logout' : ''}>{title || "My Info"}</h4>
+      <h4 className={isDeleted ? "logout" : ""}>{title || "My Info"}</h4>
       {id && (
         <p>
-          Id: <strong>{id}</strong>
+          Id: <strong>{id || "Loading..."}</strong>
         </p>
       )}
       <p>
-        Name: <strong>{name}</strong>
+        Name: <strong>{name || "Loading..."}</strong>
       </p>
       <p>
-        Email: <strong>{email}</strong>
+        Email: <strong>{email || "Loading..."}</strong>
       </p>
       {role && (
         <p>
-          Role: <strong>{role}</strong>
+          Role: <strong>{role || "Loading..."}</strong>
         </p>
       )}
       <p>
-        Joined At: <strong>{formatDate(createdAt)}</strong>
+        Joined At: <strong>{formatDate(createdAt) || "Loading..."}</strong>
       </p>
       {isAdmin && title !== "Admin Info" && !isDeleted && (
-        <button className="red" onClick={handleDelete}>
-          Delete user
+        <button
+          disabled={isLoading || loading}
+          className="red"
+          onClick={handleDelete}
+        >
+          {isLoading ? "Deleting..." : "Delete user"}
         </button>
       )}
       {isAdmin && title !== "Admin Info" && isDeleted && (
-        <button className="login-button" onClick={handleUnDelete}>
-          Un-Delete user
+        <button
+          disabled={isLoading || loading}
+          className="login-button"
+          onClick={handleUnDelete}
+        >
+          {isLoading ? "Un-Deleting..." : "Un-Delete user"}
+          
         </button>
       )}
     </div>

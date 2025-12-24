@@ -395,6 +395,11 @@ h4 {
   margin-top: 10px;
 }
 
+.red:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
 /* Login Card */
 .login-card {
   padding: 40px;
