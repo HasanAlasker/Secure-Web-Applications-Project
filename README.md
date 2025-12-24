@@ -125,7 +125,7 @@ The following tools were used to analyze the codebase:
 ## 🚀 Deployment
 
 **Live Application:**  
-🔗 *[Add deployment URL here]*
+🔗 *https://secure-project.netlify.app/*
 
 ### Local Setup
 
