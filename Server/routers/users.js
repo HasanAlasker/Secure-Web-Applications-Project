@@ -217,7 +217,7 @@ router.put("/un-delete/:id", [auth, admin], async (req, res) => {
 });
 
 //edit user (auth)
-router.put("/edit/:id", [auth, editUserSchema], async (req, res) => {
+router.put("/edit/:id", [auth, validate(editUserSchema)], async (req, res) => {
   try {
     const id = req.params.id;
     const { name } = req.body;
