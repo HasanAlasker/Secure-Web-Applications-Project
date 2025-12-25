@@ -219,16 +219,20 @@ router.put("/un-delete/:id", [auth, admin], async (req, res) => {
 router.put("/edit/:id", auth, async (req, res) => {
   try {
     const id = req.params.id;
-    const data = req.body;
+    const { name } = req.body;
 
     if (!id || !mongoose.Types.ObjectId.isValid(id)) {
       return res.status(400).send("Invalid ad ID");
     }
 
-    const updatedUser = await UserModel.findByIdAndUpdate(id, data, {
-      runValidators: true,
-      new: true,
-    });
+    const updatedUser = await UserModel.findByIdAndUpdate(
+      id,
+      { name: name },
+      {
+        runValidators: true,
+        new: true,
+      }
+    );
 
     if (!updatedUser) return res.status(400).send("User not updated");
 
