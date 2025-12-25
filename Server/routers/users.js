@@ -26,7 +26,22 @@ const cookieOptions = {
 // get all users (admin)
 router.get("/", [auth, admin, winstonLogger], async (req, res) => {
   try {
-    const users = await UserModel.find()
+    const users = await UserModel.find({isDeleted : false})
+      .select("-password -__v")
+      .sort("-createdAt");
+    if (users.length === 0) return res.status(404).send("No users found");
+
+    return res.status(200).send(users);
+  } catch (err) {
+    logger.error("Error:", err);
+    return res.status(500).send("Server Error");
+  }
+});
+
+// get deleted users (admin)
+router.get("/deleted", [auth, admin, winstonLogger], async (req, res) => {
+  try {
+    const users = await UserModel.find({isDeleted : true})
       .select("-password -__v")
       .sort("-createdAt");
     if (users.length === 0) return res.status(404).send("No users found");

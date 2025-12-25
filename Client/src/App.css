@@ -260,7 +260,7 @@ a:hover {
 }
 
 .userInfo{
-  font-size: 1.5rem !important;
+  font-size: clamp(1rem, 2vw, 1.5rem) !important;
   color: var(--black) !important;
 }
 
