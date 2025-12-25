@@ -137,8 +137,16 @@ The following tools were used to analyze the codebase:
 git clone https://github.com/HasanAlasker/Secure-Web-Applications-Project.git
 cd secure-web-applications-project
 
-# Install backend dependencies
+# Install frontend dependencies
+cd ./Cleint
 npm install
 
 # Run application
-npm start
+npm run dev
+
+# Install backend dependencies
+cd ./Server
+npm install
+
+# Run server
+npm run dev
