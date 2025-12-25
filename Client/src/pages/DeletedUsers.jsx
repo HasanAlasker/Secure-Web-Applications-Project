@@ -78,7 +78,7 @@ export default function DeletedUsers() {
     <div>
       <Nav />
       <div className="screen">
-        <h1>Deleted users Users: </h1>
+        <h1>Deleted Users: </h1>
         <h2>{userList.length > 0 ? userList : "There are no users"}</h2>
       </div>
     </div>

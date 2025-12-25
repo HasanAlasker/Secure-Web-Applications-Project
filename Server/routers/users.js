@@ -26,7 +26,7 @@ const cookieOptions = {
 // get all users (admin)
 router.get("/", [auth, admin, winstonLogger], async (req, res) => {
   try {
-    const users = await UserModel.find({isDeleted : false})
+    const users = await UserModel.find({ isDeleted: false })
       .select("-password -__v")
       .sort("-createdAt");
     if (users.length === 0) return res.status(404).send("No users found");
@@ -41,7 +41,7 @@ router.get("/", [auth, admin, winstonLogger], async (req, res) => {
 // get deleted users (admin)
 router.get("/deleted", [auth, admin, winstonLogger], async (req, res) => {
   try {
-    const users = await UserModel.find({isDeleted : true})
+    const users = await UserModel.find({ isDeleted: true })
       .select("-password -__v")
       .sort("-createdAt");
     if (users.length === 0) return res.status(404).send("No users found");
@@ -208,6 +208,31 @@ router.put("/un-delete/:id", [auth, admin], async (req, res) => {
     );
 
     return res.status(202).send(user);
+  } catch (err) {
+    logger.error("Error:", err);
+    console.log(err);
+    return res.status(500).send("Server Error");
+  }
+});
+
+//edit user (auth)
+router.put("/edit/:id", auth, async (req, res) => {
+  try {
+    const id = req.params.id;
+    const data = req.body;
+
+    if (!id || !mongoose.Types.ObjectId.isValid(id)) {
+      return res.status(400).send("Invalid ad ID");
+    }
+
+    const updatedUser = await UserModel.findByIdAndUpdate(id, data, {
+      runValidators: true,
+      new: true,
+    });
+
+    if (!updatedUser) return res.status(400).send("User not updated");
+
+    return res.status(202).send(updatedUser);
   } catch (err) {
     logger.error("Error:", err);
     console.log(err);
