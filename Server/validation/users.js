@@ -1,5 +1,20 @@
 import Joi from "joi";
 
+export const editUserSchema = Joi.object({
+  name: Joi.string()
+    .min(2)
+    .max(25)
+    .pattern(/^[a-zA-Z\s'-]+$/)
+    .required()
+    .trim()
+    .messages({
+      "string.min": "Name must be at least 2 characters long",
+      "string.max": "Name can't be longer than 25 characters",
+      "string.pattern.base": "Please enter a valid name",
+      "any.required": "Name is required",
+    }),
+});
+
 export const userRegistrationSchema = Joi.object({
   name: Joi.string()
     .min(2)

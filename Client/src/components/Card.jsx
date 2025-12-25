@@ -47,7 +47,7 @@ export default function Card({
   return (
     <div className="feature-card card glass-card">
       <h4 className={isDeleted ? "logout" : ""}>{title || "My Info"}</h4>
-      {id && (
+      {id && isAdmin && (
         <p className="userInfo">
           Id: <strong>{id || "Loading..."}</strong>
         </p>

@@ -7,6 +7,7 @@ import UserModel from "../models/users.js";
 import auth from "../middleware/auth.js";
 import validate from "../middleware/joiValidation.js";
 import {
+  editUserSchema,
   userLoginSchema,
   userRegistrationSchema,
 } from "../validation/users.js";
@@ -216,7 +217,7 @@ router.put("/un-delete/:id", [auth, admin], async (req, res) => {
 });
 
 //edit user (auth)
-router.put("/edit/:id", auth, async (req, res) => {
+router.put("/edit/:id", [auth, editUserSchema], async (req, res) => {
   try {
     const id = req.params.id;
     const { name } = req.body;
@@ -224,6 +225,11 @@ router.put("/edit/:id", auth, async (req, res) => {
     if (!id || !mongoose.Types.ObjectId.isValid(id)) {
       return res.status(400).send("Invalid ad ID");
     }
+
+    if (req.user._id !== id)
+      return res
+        .status(403)
+        .send("Access denied. You can only edit your own info");
 
     const updatedUser = await UserModel.findByIdAndUpdate(
       id,
