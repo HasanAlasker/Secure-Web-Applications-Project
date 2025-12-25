@@ -14,6 +14,18 @@ export const getAllUsers = async () => {
   }
 };
 
+export const getDeletedUsers = async () => {
+  try {
+    const res = await api.get(`${endPoint}/deleted`);
+    return { ok: true, data: res.data };
+  } catch (error) {
+    return { 
+      ok: false, 
+      error: error.response?.data?.message || error.message 
+    };
+  }
+};
+
 export const getMe = async () => {
   try {
     const res = await api.get(`${endPoint}/me`);

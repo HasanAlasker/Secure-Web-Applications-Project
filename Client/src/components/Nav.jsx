@@ -10,6 +10,7 @@ function Nav({ onMenuOpen }) {
           <a href="/">Home</a>
           {user && isUser && !user.isDeleted && <a href="/me">My Info</a>}
           {user && isAdmin && <a href="/admin">Users Info</a>}
+          {user && isAdmin && <a href="/deleted">Deleted Users</a>}
         </div>
         <div>
           {user ? (

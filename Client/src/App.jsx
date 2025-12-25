@@ -9,6 +9,7 @@ import Register from "./pages/Register";
 import Admin from "./pages/Admin";
 import { AuthProvider } from "./context/authContext";
 import MyInfo from "./pages/MyInfo";
+import DeletedUsers from "./pages/DeletedUsers";
 
 export default function App() {
   return (
@@ -23,6 +24,7 @@ export default function App() {
           </Route>
           <Route element={<AdminRoute />}>
             <Route path="/admin" element={<Admin />} />
+            <Route path="/deleted" element={<DeletedUsers />} />
           </Route>
         </Routes>
       </AuthProvider>
