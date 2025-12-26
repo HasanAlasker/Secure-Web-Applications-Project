@@ -8,6 +8,7 @@ import * as Yup from "yup";
 const validitionSchema = Yup.object({
   name: Yup.string()
     .min(2, "Full name must be at least 2 characters")
+    .max(25, "Maximum 25 characters")
     .required("Name is required")
     .matches(/^[a-zA-Z\s'-]+$/, "Invalid name"),
 });
@@ -34,9 +35,11 @@ export default function Card({
   const handleSubmit = async (values, { setSubmitting }) => {
     try {
       const data = { name: values.name };
-      await updateUser(id, data);
+      const result = await updateUser(id, data);
+      if (result.ok) alert("User updated successfully!");
+      else alert("Error while updating!");
+
       setIsEditing(false);
-      alert("User updated successfully!");
     } catch (error) {
       alert("User not updated");
     } finally {
