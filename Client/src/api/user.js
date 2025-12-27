@@ -10,6 +10,7 @@ export const getAllUsers = async () => {
     return {
       ok: false,
       error: error.response?.data?.message || error.message,
+      status: error.status
     };
   }
 };
@@ -22,6 +23,7 @@ export const getDeletedUsers = async () => {
     return {
       ok: false,
       error: error.response?.data?.message || error.message,
+      status: error.status
     };
   }
 };
@@ -34,6 +36,7 @@ export const getMe = async () => {
     return {
       ok: false,
       error: error.response?.data?.message || error.message,
+      status: error.status
     };
   }
 };
@@ -111,6 +114,7 @@ export const updateUser = async (id, data) => {
     return {
       ok: false,
       error: error.response?.data?.message || error.message,
+      status: error.status
     };
   }
 };
@@ -123,6 +127,7 @@ export const awake = async () => {
     return {
       ok: false,
       error: error.response?.data?.message || error.message,
+      status: error.status
     };
   }
 };

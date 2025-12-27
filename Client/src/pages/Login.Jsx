@@ -119,7 +119,7 @@ export default function Login() {
                   Wrong email or password
                 </div>
               )}
-              {errorFetching && (
+              {errorFetching && status !== 429 && (
                 <div className="error-message large">
                   Couldn't connect to the server
                 </div>

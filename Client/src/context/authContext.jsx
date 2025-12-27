@@ -22,10 +22,18 @@ export function AuthProvider({ children }) {
 
   useEffect(() => {
     const checkAuth = async () => {
+      setError(false);
+      setStatus(null);
+
       try {
         const res = await getMe();
         if (res.ok) {
           setUser(res.data);
+        }
+        if (res.status === 429) {
+          setStatus(res.status);
+          setError(true);
+          setErrMsg(res.error)
         }
       } catch (error) {
         console.log("Not authenticated");
@@ -63,6 +71,9 @@ export function AuthProvider({ children }) {
   };
 
   const register = async (data) => {
+    setError(false);
+    setStatus(null);
+
     try {
       setLoading(true);
       setError(false);

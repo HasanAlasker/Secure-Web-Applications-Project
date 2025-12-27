@@ -3,7 +3,7 @@ import Nav from "../components/Nav";
 import { useAuth } from "../context/authContext";
 
 export default function Home() {
-  const { user } = useAuth();
+  const { user, status, errMsg } = useAuth();
 
   return (
     <div>
@@ -11,8 +11,8 @@ export default function Home() {
       <div className="screen">
         <div className="hero-section glass-card-b">
           <h1 className="iconAndText">
-            <span className="material-symbols-outlined bigIcon">lock</span> Welcome
-            to the Secure App
+            <span className="material-symbols-outlined bigIcon">lock</span>{" "}
+            Welcome to the Secure App
           </h1>
           <p className="subtitle">
             Built with security-first principles for the Application Security &
@@ -20,10 +20,19 @@ export default function Home() {
           </p>
         </div>
 
+        {status === 429 && (
+          <div className="disclaimer ">
+            <p>
+              ⚠️ <strong>{errMsg}:</strong> We have suspended your
+              account temporarly for too many requests
+            </p>
+          </div>
+        )}
+
         {user && user.isDeleted === true && (
           <div className="disclaimer-red">
             <p className="redI">
-              ⛔ <strong >Blocked Account:</strong> This account was blocked by
+              ⛔ <strong>Blocked Account:</strong> This account was blocked by
               the admins for a suspected terms of service violation
             </p>
           </div>
@@ -31,14 +40,18 @@ export default function Home() {
 
         <div className="security-info">
           <h2 className="iconAndText">
-            <span className="material-symbols-outlined midIcon">shield_lock</span>
+            <span className="material-symbols-outlined midIcon">
+              shield_lock
+            </span>
             How is this app secure?
           </h2>
 
           <div className="security-features">
             <div className="feature-card glass-card">
               <div className="feature-icon">
-                <span className="material-symbols-outlined xlIcon gold">key</span>
+                <span className="material-symbols-outlined xlIcon gold">
+                  key
+                </span>
               </div>
               <h3>Strong Authentication</h3>
               <p>
@@ -65,7 +78,9 @@ export default function Home() {
 
             <div className="feature-card glass-card">
               <div className="feature-icon">
-                <span className="material-symbols-outlined xlIcon green">check_box</span>
+                <span className="material-symbols-outlined xlIcon green">
+                  check_box
+                </span>
               </div>
               <h3>Input Validation</h3>
               <p>
@@ -76,7 +91,11 @@ export default function Home() {
             </div>
 
             <div className="feature-card glass-card">
-              <div className="feature-icon"><span className="material-symbols-outlined xlIcon gold">lock</span></div>
+              <div className="feature-icon">
+                <span className="material-symbols-outlined xlIcon gold">
+                  lock
+                </span>
+              </div>
               <h3>Encrypted Data</h3>
               <p>
                 Sensitive data is encrypted at rest in <strong>MongoDB</strong>.
@@ -86,7 +105,11 @@ export default function Home() {
             </div>
 
             <div className="feature-card glass-card">
-              <div className="feature-icon"><span className="material-symbols-outlined xlIcon redI">do_not_disturb_on</span></div>
+              <div className="feature-icon">
+                <span className="material-symbols-outlined xlIcon redI">
+                  do_not_disturb_on
+                </span>
+              </div>
               <h3>Rate Limiting</h3>
               <p>
                 Brute-force attacks are prevented through intelligent rate
@@ -96,7 +119,11 @@ export default function Home() {
             </div>
 
             <div className="feature-card glass-card">
-              <div className="feature-icon"><span className="material-symbols-outlined xlIcon blue2">shield</span></div>
+              <div className="feature-icon">
+                <span className="material-symbols-outlined xlIcon blue2">
+                  shield
+                </span>
+              </div>
               <h3>Security Headers</h3>
               <p>
                 <strong>Helmet.js</strong> sets security headers including CSP,
@@ -106,7 +133,11 @@ export default function Home() {
             </div>
 
             <div className="feature-card glass-card">
-              <div className="feature-icon"><span className="material-symbols-outlined xlIcon blue">language</span></div>
+              <div className="feature-icon">
+                <span className="material-symbols-outlined xlIcon blue">
+                  language
+                </span>
+              </div>
               <h3>CORS Protection</h3>
               <p>
                 Strict CORS policies ensure only authorized origins can access
@@ -115,7 +146,11 @@ export default function Home() {
             </div>
 
             <div className="feature-card glass-card">
-              <div className="feature-icon"><span className="material-symbols-outlined xlIcon blue3">search</span></div>
+              <div className="feature-icon">
+                <span className="material-symbols-outlined xlIcon blue3">
+                  search
+                </span>
+              </div>
               <h3>Threat Modeling</h3>
               <p>
                 Designed using <strong>STRIDE</strong> methodology and
@@ -125,7 +160,11 @@ export default function Home() {
             </div>
 
             <div className="feature-card glass-card">
-              <div className="feature-icon"><span className="material-symbols-outlined xlIcon gold">warning</span></div>
+              <div className="feature-icon">
+                <span className="material-symbols-outlined xlIcon gold">
+                  warning
+                </span>
+              </div>
               <h3>Safe Error Handling</h3>
               <p>
                 Generic error messages prevent information leakage. Stack traces
@@ -143,7 +182,12 @@ export default function Home() {
           </div>
 
           <div className="tech-stack glass-card">
-            <h2 className="iconAndText"><span className="material-symbols-outlined bigIcon">home_repair_service</span> Tech Stack</h2>
+            <h2 className="iconAndText">
+              <span className="material-symbols-outlined bigIcon">
+                home_repair_service
+              </span>{" "}
+              Tech Stack
+            </h2>
             <div className="tech-columns">
               <div className="tech-column">
                 <h3>Frontend</h3>
