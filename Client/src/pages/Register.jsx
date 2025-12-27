@@ -35,7 +35,7 @@ const initialValues = {
 };
 
 export default function Register() {
-  const { user, loading, register, error, errMsg } = useAuth();
+  const { user, loading, register, error, errMsg, status } = useAuth();
 
   const {
     data,
@@ -137,14 +137,19 @@ export default function Register() {
                   : "Sign Up"}
               </button>
 
-              {error && !errorFetching && (
+              {error && !errorFetching && status !== 429 && (
                 <div className="error-message large">
                   {errMsg ? errMsg : "Couldn't Register, Please try again"}
                 </div>
               )}
-              {errorFetching && (
+              {errorFetching && status !== 429 && (
                 <div className="error-message large">
                   Couldn't connect to the server
+                </div>
+              )}
+              {status === 429 && (
+                <div className="error-message large">
+                  Blocked for too many requests
                 </div>
               )}
 

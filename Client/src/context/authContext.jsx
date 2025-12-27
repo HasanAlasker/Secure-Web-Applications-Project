@@ -28,7 +28,7 @@ export function AuthProvider({ children }) {
           setUser(res.data);
         }
       } catch (error) {
-        console.log("Not authenticated:", error);
+        console.log("Not authenticated");
       } finally {
         setLoading(false);
       }
@@ -41,23 +41,22 @@ export function AuthProvider({ children }) {
       setLoading(true);
       setError(false);
       setStatus(null);
-      
+
       const res = await loginUser(data);
-      
+
       if (res.ok) {
         setUser(res.data);
         navigate("/");
-        return { ok: true, status: res.status }; 
+        return { ok: true, status: res.status };
       } else {
         setError(true);
         setStatus(res.status);
         setErrMsg(res.error);
-        return { ok: false, status: res.status }; 
+        return { ok: false, status: res.status };
       }
     } catch (error) {
-      console.log(error);
       setError(true);
-      return { ok: false, status: null }; 
+      return { ok: false, status: null };
     } finally {
       setLoading(false);
     }
@@ -71,13 +70,17 @@ export function AuthProvider({ children }) {
       if (res.ok) {
         setUser(res.data);
         navigate("/");
+        return { ok: true, status: res.status };
       } else {
         setError(true);
+        setStatus(res.status);
         setErrMsg(res.error);
+        return { ok: false, status: res.status };
       }
-      setLoading(false);
     } catch (error) {
-      console.log(error);
+      setError(true);
+      return { ok: false, status: null };
+    } finally {
       setLoading(false);
     }
   };
@@ -92,7 +95,6 @@ export function AuthProvider({ children }) {
       }
       setLoading(false);
     } catch (error) {
-      console.log(error);
       setLoading(false);
     }
   };
