@@ -150,3 +150,83 @@ npm install
 
 # Run server
 npm run dev
+```
+
+## 📁 Project Structure
+
+
+```
+├── 📁 .github
+│   └── 📁 workflows
+│       └── ⚙️ codeql.yml
+├── 📁 Client
+│   ├── 📁 public
+│   │   ├── 📄 _redirects
+│   │   └── 🖼️ vite.svg
+│   ├── 📁 src
+│   │   ├── 📁 api
+│   │   │   ├── 📄 axios.js
+│   │   │   └── 📄 user.js
+│   │   ├── 📁 assets
+│   │   ├── 📁 components
+│   │   │   ├── 📄 AdminRoute.jsx
+│   │   │   ├── 📄 AuthRoute.jsx
+│   │   │   ├── 📄 Card.jsx
+│   │   │   └── 📄 Nav.jsx
+│   │   ├── 📁 constants
+│   │   │   └── 📄 baseURL.js
+│   │   ├── 📁 context
+│   │   │   └── 📄 authContext.jsx
+│   │   ├── 📁 functions
+│   │   │   └── 📄 formatDate.jsx
+│   │   ├── 📁 hooks
+│   │   │   └── 📄 useApi.js
+│   │   ├── 📁 pages
+│   │   │   ├── 📄 Admin.jsx
+│   │   │   ├── 📄 DeletedUsers.jsx
+│   │   │   ├── 📄 Home.jsx
+│   │   │   ├── 📄 Login.jsx
+│   │   │   ├── 📄 MyInfo.jsx
+│   │   │   └── 📄 Register.jsx
+│   │   ├── 🎨 App.css
+│   │   ├── 📄 App.jsx
+│   │   └── 📄 main.jsx
+│   ├── ⚙️ .gitignore
+│   ├── 📝 README.md
+│   ├── 📄 eslint.config.js
+│   ├── 🌐 index.html
+│   ├── ⚙️ package-lock.json
+│   ├── ⚙️ package.json
+│   └── 📄 vite.config.js
+├── 📁 Server
+│   ├── 📁 logs
+│   ├── 📁 middleware
+│   │   ├── 📄 admin.js
+│   │   ├── 📄 auth.js
+│   │   ├── 📄 joiValidation.js
+│   │   ├── 📄 limiter.js
+│   │   └── 📄 winston.js
+│   ├── 📁 models
+│   │   └── 📄 users.js
+│   ├── 📁 routers
+│   │   └── 📄 users.js
+│   ├── 📁 utils
+│   │   └── 📄 winston.js
+│   ├── 📁 validation
+│   │   └── 📄 users.js
+│   ├── ⚙️ .env.example
+│   ├── ⚙️ .gitignore
+│   ├── 📄 index.js
+│   ├── ⚙️ package-lock.json
+│   └── ⚙️ package.json
+├── 📁 docs
+│   ├── 📁 Security Scan Results
+│   │   ├── 🖼️ GitHub CodeQL (SAST Scan) Result.jpg
+│   │   ├── 🖼️ Snyk Scan Results 1.jpg
+│   │   ├── 🖼️ Snyk Scan Results 2.jpg
+│   │   └── 🖼️ Snyk Scan Results 3.jpg
+│   ├── 📕 DREAD.pdf
+│   ├── 📕 STRIDE.pdf
+│   └── 📕 Secure Programming Project full document.pdf
+└── 📝 README.md
+```
