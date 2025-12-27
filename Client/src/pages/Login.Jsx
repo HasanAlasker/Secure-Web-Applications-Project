@@ -31,7 +31,7 @@ const initialValues = {
 };
 
 export default function Login() {
-  const { user, loading, login, error } = useAuth();
+  const { user, loading, login, error, status } = useAuth();
 
   const {
     data,
@@ -114,7 +114,7 @@ export default function Login() {
                   : "Login"}
               </button>
 
-              {error && !errorFetching && (
+              {error && !errorFetching && status !== 429 && (
                 <div className="error-message large">
                   Wrong email or password
                 </div>
@@ -122,6 +122,11 @@ export default function Login() {
               {errorFetching && (
                 <div className="error-message large">
                   Couldn't connect to the server
+                </div>
+              )}
+              {status === 429 && (
+                <div className="error-message large">
+                  Blocked for too many requests
                 </div>
               )}
 

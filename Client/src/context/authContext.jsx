@@ -15,6 +15,7 @@ export function useAuth() {
 export function AuthProvider({ children }) {
   const [user, setUser] = useState(null);
   const [error, setError] = useState(false);
+  const [status, setStatus] = useState(null);
   const [errMsg, setErrMsg] = useState(null);
   const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
@@ -39,19 +40,25 @@ export function AuthProvider({ children }) {
     try {
       setLoading(true);
       setError(false);
+      setStatus(null);
+      
       const res = await loginUser(data);
+      
       if (res.ok) {
         setUser(res.data);
         navigate("/");
+        return { ok: true, status: res.status }; 
       } else {
         setError(true);
-        console.log(res.error);
+        setStatus(res.status);
         setErrMsg(res.error);
+        return { ok: false, status: res.status }; 
       }
-      setLoading(false);
     } catch (error) {
       console.log(error);
       setError(true);
+      return { ok: false, status: null }; 
+    } finally {
       setLoading(false);
     }
   };
@@ -59,7 +66,7 @@ export function AuthProvider({ children }) {
   const register = async (data) => {
     try {
       setLoading(true);
-      setError(false)
+      setError(false);
       const res = await registerUser(data);
       if (res.ok) {
         setUser(res.data);
@@ -103,7 +110,8 @@ export function AuthProvider({ children }) {
     error,
     isAdmin,
     isUser,
-    errMsg
+    errMsg,
+    status,
   };
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
