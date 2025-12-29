@@ -50,11 +50,6 @@ export default function Card({
   return (
     <div className="feature-card card glass-card">
       <h4 className={isDeleted ? "logout" : ""}>{title || "My Info"}</h4>
-      {id && isAdmin && (
-        <p className="userInfo">
-          Id: <strong>{id || "Loading..."}</strong>
-        </p>
-      )}
       <p className="userInfo">
         Name: <strong>{name || "Loading..."}</strong>
       </p>
@@ -69,6 +64,11 @@ export default function Card({
       <p className="userInfo">
         Joined At: <strong>{formatDate(createdAt) || "Loading..."}</strong>
       </p>
+      {id && isAdmin && (
+        <p className="userInfo">
+          Id: <strong>{id || "Loading..."}</strong>
+        </p>
+      )}
 
       {isEditing && (
         <>
