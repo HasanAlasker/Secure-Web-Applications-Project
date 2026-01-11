@@ -7,6 +7,7 @@ import helmet from "helmet";
 import users from "./routers/users.js";
 import cookieParser from "cookie-parser";
 import { globalLimit } from "./middleware/limiter.js";
+import sanitize from "./middleware/sanitization.js";
 
 dotenv.config();
 
@@ -25,6 +26,7 @@ app.use(
     credentials: true,
   })
 );
+app.use(sanitize);
 app.use(globalLimit);
 
 mongoose
