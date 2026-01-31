@@ -23,7 +23,7 @@
     "helmet": "^8.1.0",
     "joi": "^18.0.2",
     "jsonwebtoken": "^9.0.3",
-    "lodash": "^4.17.21",
+    "lodash": "^4.17.23",
     "mongoose": "^9.0.2",
     "nodemon": "^3.1.11",
     "winston": "^3.19.0"
