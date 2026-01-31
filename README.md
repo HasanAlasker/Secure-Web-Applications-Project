@@ -121,7 +121,7 @@ The following tools were used to analyze the codebase:
 - [ ] Snyk
 - [ ] Checkmarx
 
-📂 Reports and screenshots are available in the `scans/` directory.
+📂 Reports and screenshots are available in the `docs/` directory.
 
 ---
 
